@@ -45,7 +45,7 @@ class Swipe extends Component {
   }
 
   navTrash() {
-    let doms = document.querySelectorAll('#swipe-wrapper li')
+    let doms = document.querySelectorAll('#swipe-wrapper li.layer')
     let last = doms.length - 1
     let duration = 0.4
     doms[last].setAttribute('style','transition: all ' + duration + 's linear; left: -1000px ')
@@ -55,7 +55,7 @@ class Swipe extends Component {
   }
 
   navAdd() {
-    let doms = document.querySelectorAll('#swipe-wrapper li')
+    let doms = document.querySelectorAll('#swipe-wrapper li.layer')
     let last = doms.length - 1
     let duration = 0.4
     doms[last].setAttribute('style','transition: all ' + duration + 's linear; left: 1000px ')
@@ -72,20 +72,47 @@ class Swipe extends Component {
         doms[key].setAttribute('style','margin-left: -' + marginLeft + 'px')
       }
     }
-
+    this.preload(()=>{
+      let doms = document.querySelectorAll('#swipe-wrapper li.layer')
+      for (let key in doms) {
+        if (doms.hasOwnProperty(key)) {
+          doms[key].setAttribute('style','display: block')
+        }
+      }
+    })
     this.triggerNav()
   }
 
-  render() {
+  preload(callback) {
+    let imgArr = []
+    let id = 0
+    let total = images.length
+    let loaded = 0
+    images.map((img)=>{
+      imgArr[id] = document.createElement( "img" );
+			imgArr[id].src = img.url;
+      imgArr[id].addEventListener('load', () => {
+        loaded++
+        if (loaded == total) {
+          callback()
+        }
+      })
+      id++
+    })
 
+  }
+
+  render() {
+    let myStyle = {'display': 'none'}
     var content = images.map((image) => {
-      return (<li>
+      return (<li className="layer" style={myStyle}>
               <img src={image.url} />
             </li>)
     })
 
     return (
     <ul id='swipe-wrapper'>
+      <li className="loading"><span>Loading</span></li>
       {content}
     </ul>
     )

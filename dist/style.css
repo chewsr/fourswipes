@@ -28,7 +28,8 @@ h1 {
   background: #FFF;
   margin: 40px 10px;
   float: left;
-  position: relative; }
+  position: relative;
+  background: #333; }
   #my-swipe ul {
     margin: 0;
     padding: 0;
@@ -47,6 +48,14 @@ h1 {
       text-align: center;
       left: 0;
       top: 0; }
+      #my-swipe ul li.loading {
+        background: #333;
+        color: #FFF;
+        text-align: center;
+        display: table; }
+        #my-swipe ul li.loading span {
+          display: table-cell;
+          vertical-align: middle; }
       #my-swipe ul li img {
         height: 100%;
         width: auto;
