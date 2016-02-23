@@ -1,0 +1,4 @@
+Swipe-*
+node_modules
+public/**
+!public/config.js

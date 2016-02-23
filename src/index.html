@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Four Swipes</title>
+    <link rel="stylesheet" href="style.css" media="screen" title="no title" charset="utf-8">
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <script>
+      System.trace = true;
+      System.import('swipe.js');
+    </script>
+  </head>
+
+  <body>
+    <h1>4 swipes prototype</h1>
+    <div class="mobile-wrapper">
+      <div id="my-swipe"></div>
+    </div>
+    <div id="my-nav">
+      <div class="top button"><span>TOP</span></div>
+      <div class="left button"><span>LEFT</span></div>
+      <div class="right button"><span>RIGHT</span></div>
+      <div class="bottom button"><span>BOTTOM</span></div>
+    </div>
+  </body>
+
+</html>
