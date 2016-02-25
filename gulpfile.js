@@ -13,7 +13,7 @@ const config = {
   dist: 'dist',
   es6: ['src/*.js', 'src/{components,containers}/**'],
   es5: ['src/jspm_packages/**/*', 'src/config.js'],
-  assets: 'src/**/*.{html,png,jpg,jpeg,gif}',
+  assets: 'src/**/*.{html,png,jpg,jpeg,gif,svg}',
   sass: ['src/sass/**/*.sass'],
   test: 'test/**/*.js',
   index: 'public/swipe.js',
