@@ -30,6 +30,62 @@ h1 {
   float: left;
   position: relative;
   background: #333; }
+  #my-swipe .select-nav {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; }
+    #my-swipe .select-nav .trash-wrapper {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      top: 0;
+      left: 10px; }
+      #my-swipe .select-nav .trash-wrapper .btn {
+        left: 10px; }
+      #my-swipe .select-nav .trash-wrapper .dialog {
+        left: 0; }
+    #my-swipe .select-nav .plus-wrapper {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      top: 0;
+      right: 10px; }
+      #my-swipe .select-nav .plus-wrapper .btn {
+        right: 10px; }
+      #my-swipe .select-nav .plus-wrapper .dialog {
+        right: 0; }
+    #my-swipe .select-nav .dialog {
+      width: 30px;
+      height: 30px;
+      background: #d03131;
+      position: absolute;
+      top: -10px;
+      display: none;
+      border-radius: 50%;
+      color: #FFF;
+      text-align: center;
+      transition: all .2s ease-in-out;
+      transform: scale(1); }
+      #my-swipe .select-nav .dialog.showed {
+        display: table; }
+      #my-swipe .select-nav .dialog.bump {
+        transform: scale(1.1); }
+      #my-swipe .select-nav .dialog span {
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 0.8em; }
+    #my-swipe .select-nav .btn {
+      width: 55px;
+      height: 55px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 50%;
+      cursor: pointer;
+      position: absolute; }
+      #my-swipe .select-nav .btn img {
+        margin: 15px; }
   #my-swipe ul {
     margin: 0;
     padding: 0;
@@ -56,11 +112,46 @@ h1 {
         #my-swipe ul li.loading span {
           display: table-cell;
           vertical-align: middle; }
+      #my-swipe ul li img.logo {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -50px;
+        margin-top: -50px; }
       #my-swipe ul li img {
         height: 100%;
         width: auto;
         clear: right;
-        display: block; }
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0; }
+      #my-swipe ul li .gra-bg {
+        background: #000;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: table;
+        text-align: center;
+        height: 25%;
+        background: -moz-linear-gradient(top, transparent 0%, transparent 1%, rgba(0, 0, 0, 0.89) 100%);
+        background: -webkit-linear-gradient(top, transparent 0%, transparent 1%, rgba(0, 0, 0, 0.89) 100%);
+        background: linear-gradient(to bottom, transparent 0%, transparent 1%, rgba(0, 0, 0, 0.89) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#e3000000',GradientType=0 ); }
+        #my-swipe ul li .gra-bg span {
+          display: table-cell;
+          vertical-align: middle;
+          color: #FFF;
+          margin: 0;
+          padding: 5px 0;
+          width: 100%;
+          font-weight: normal;
+          text-align: center;
+          font-family: 'Roboto Slab', serif;
+          font-size: 1.4em; }
 
 #my-nav {
   width: 200px;
