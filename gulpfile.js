@@ -50,7 +50,7 @@ gulp.task('build-dist', () => {
   gulp.src('public/style.css')
   .pipe(gulp.dest(config.dist))
 
-  gulp.src('src/assets/*.jpg')
+  gulp.src('src/assets/*.{jpg,svg}')
   .pipe(gulp.dest(config.dist + '/assets'))
 })
 
