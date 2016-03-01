@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-
+import {Utils} from './Utils.js'
+import Menu from './Menu.js'
 
 var images = [
 {
@@ -58,8 +59,11 @@ var images = [
 }
 ]
 
+
 var trashArr = []
 var favArr = []
+var trashPage
+var listPage
 
 class Swipe extends Component {
 
@@ -68,42 +72,47 @@ class Swipe extends Component {
     this.state = {"trash": 0,
     "shortlist": 0,
     "trashDialogCSS": "dialog",
-    "shortlistDialogCSS":"dialog"}
+    "shortlistDialogCSS":"dialog",
+    "products": Utils.skuProducts(images),
   }
 
-  leftMargin() {
-    let dom = document.getElementById('swipe-wrapper')
-    let width = dom.offsetWidth
-    let height = dom.offsetHeight
-    let marginLeft = (height*0.75 - width)/2
-    return marginLeft
+    this.state.products = Utils.skuProducts(images)
   }
 
   triggerNav() {
     let doms = document.querySelectorAll('.button')
+
     for (let key in doms) {
       if (doms.hasOwnProperty(key)) {
         let myDom = doms[key]
         myDom.addEventListener('click', () => {
           let myClass = myDom.getAttribute('class')
           if (myClass.indexOf('left') > -1){
-            this.navTrash()
+            this.trashProduct()
           } else if (myClass.indexOf('right') > -1) {
-            this.navAdd()
+            this.addProduct()
           }
         })
       }
     }
+
+    let trashBtn = document.getElementById('trash-list-btn')
+    trashPage = document.getElementById('trash-page')
+    trashBtn.addEventListener('click', () => {
+      trashPage.setAttribute('class','showed')
+      this.props.pageUpdate('trash-page')
+    })
+
   }
 
-  navTrash() {
+  trashProduct() {
     let doms = document.querySelectorAll('#swipe-wrapper li.layer')
     let last = doms.length - 1
     let duration = 0.4
     doms[last].setAttribute('style','transition: all ' + duration + 's linear; left: -1000px ')
     let sku = doms[last].getAttribute('data-sku')
 
-    trashArr.push(sku)
+    trashArr.push(this.state.products[sku])
     this.setState({trash: trashArr.length})
     this.setState({trashDialogCSS: "dialog showed bump"})
 
@@ -113,13 +122,13 @@ class Swipe extends Component {
     },duration*1000)
   }
 
-  navAdd() {
+  addProduct() {
     let doms = document.querySelectorAll('#swipe-wrapper li.layer')
     let last = doms.length - 1
     let duration = 0.4
     doms[last].setAttribute('style','transition: all ' + duration + 's linear; left: 1000px ')
     let sku = doms[last].getAttribute('data-sku')
-    favArr.push(sku)
+    favArr.push(this.state.products[sku])
     this.setState({shortlist: favArr.length})
     this.setState({shortlistDialogCSS: "dialog showed bump"})
     setTimeout(()=>{
@@ -129,14 +138,15 @@ class Swipe extends Component {
   }
 
   componentDidMount() {
-    let marginLeft = this.leftMargin()
+
+    let marginLeft = Utils.leftMargin()
     let doms = document.querySelectorAll('#swipe-wrapper li.layer img')
     for (let key in doms) {
       if (doms.hasOwnProperty(key)) {
         doms[key].setAttribute('style','margin-left: -' + marginLeft + 'px')
       }
     }
-    this.preload(()=>{
+    Utils.preload(images,()=>{
       let doms = document.querySelectorAll('#swipe-wrapper li.layer')
       for (let key in doms) {
         if (doms.hasOwnProperty(key)) {
@@ -148,31 +158,17 @@ class Swipe extends Component {
     this.triggerNav()
   }
 
-  preload(callback) {
-    let imgArr = []
-    let id = 0
-    let total = images.length
-    let loaded = 0
-    images.map((img)=>{
-      imgArr[id] = document.createElement( "img" );
-			imgArr[id].src = img.url;
-      imgArr[id].addEventListener('load', () => {
-        loaded++
-        if (loaded == total) {
-          callback()
-        }
-      })
-      id++
-    })
-
+  componentDidUpdate() {
+    if (this.props.curPage == 'home-page') {
+      trashPage.setAttribute('class','')
+    }
   }
 
   render() {
+
     let myStyle = {'display': 'none'}
-    var content = images.map((image) => {
-
+    let swipeContent = images.map((image) => {
       let info = image.name + ' <br/> $' + image.price
-
       return (<li className="layer" style={myStyle} data-sku={image.sku}>
               <img src={image.url} />
               <div className="gra-bg">
@@ -181,27 +177,62 @@ class Swipe extends Component {
             </li>)
     })
 
+
+    let trashContent = trashArr.map((item) => {
+      return (
+        <li>
+          <div className="thumb">
+            <img src={item.url}/>
+          </div>
+          <div className="info">
+            <div className="info-content">
+              {item.name}
+              <div className="price-tag">${item.price}</div>
+            </div>
+          </div>
+          <div className="add-to-cart">
+            <span className="small">Add To</span>
+            <span className="big">Cart</span>
+          </div>
+        </li>
+      )
+    })
+
     let trashDialogClass, shortlistDialogClass
 
+    let trashPage = (<div id="trash-page" className={this.state.trashPageIn}>
+      <h3>Trash list</h3>
+      <ul>{trashContent}</ul>
+    </div>)
+
+    let swipePage = (
+        <div id="swipe-page">
+          <ul id="swipe-wrapper">
+            <li className="loading"><span><img src="assets/chewsr-logo.svg" className="logo"/></span></li>
+            {swipeContent}
+          </ul>
+          <div className="select-nav">
+            <div className="trash-wrapper">
+              <div className="btn" id="trash-list-btn"><img src="assets/icon-trash.svg"/></div>
+              <div className={this.state.trashDialogCSS}>
+                <span>{this.state.trash}</span>
+              </div>
+            </div>
+            <div className="plus-wrapper">
+              <div className="btn" id="short-list-btn"><img src="assets/icon-plus.svg"/></div>
+              <div className={this.state.shortlistDialogCSS}>
+                <span>{this.state.shortlist}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+
     return (
-    <ul id='swipe-wrapper'>
-      <li className="loading"><span><img src="assets/chewsr-logo.svg" className="logo"/></span></li>
-      {content}
-      <div className="select-nav">
-        <div className="trash-wrapper">
-          <div className="btn"><img src="assets/icon-trash.svg"/></div>
-          <div className={this.state.trashDialogCSS}>
-            <span>{this.state.trash}</span>
-          </div>
-        </div>
-        <div className="plus-wrapper">
-          <div className="btn"><img src="assets/icon-plus.svg"/></div>
-          <div className={this.state.shortlistDialogCSS}>
-            <span>{this.state.shortlist}</span>
-          </div>
-        </div>
+      <div className="pages-wrapper">
+        {trashPage}
+        {swipePage}
       </div>
-    </ul>
     )
 
   }

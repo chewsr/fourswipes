@@ -15,21 +15,30 @@ body
 	background: #000
 	border-radius: 20px
 
-h1
-	color: #FFF
-	position: absolute
-	top: 0
-	left: 0
-
-#my-swipe
-	border: 0
+#main-container
 	width: 375px
 	height: 667px
 	background: #FFF
 	margin: 40px 10px
 	float: left
 	position: relative
+	overflow: hidden
+
+h1
+	color: #FFF
+	position: absolute
+	top: 0
+	left: 0
+
+#swipe-page
+	border: 0
 	background: #333
+	width: 100%
+	height: 100%
+	position: absolute
+	top: 0
+	left: 0
+	z-index: 0
 
 	.select-nav
 		position: absolute
@@ -76,15 +85,15 @@ h1
 			border-radius: 50%
 			color: #FFF
 			text-align: center
-			transition: all 0.1 linear
-			transform: scale(1)
+			transition: all 0.2s linear
+			transform: scale(1,1)
 
 			&.showed
 				display: table
 
 			&.bump
- 				transform: scale(1.5)
-				transition: all 0.1 linear
+				transform: scale(1.2)
+				transition: all 0.2s linear
 
 			span
 				display: table-cell
@@ -221,3 +230,145 @@ h1
 		height: 100px
 		right: 0
 		top: 50px
+
+
+
+#trash-page
+	width: 100%
+	height: 100%
+	position: absolute
+	background: #333
+	top: 0
+	z-index: 1
+	left: -1000px
+	transition: all 0.2s linear
+	overflow: auto
+
+	&.showed
+		left: 0
+		transition: all 0.3s linear
+
+	h3
+		margin: 70px 10px 10px 10px
+		padding: 0
+		color: #FFF
+		font-family: 'Roboto Slab', serif
+
+	ul
+		margin: 0
+		padding: 0
+		list-style-type: none
+
+		li
+			display: block
+			width: 100%
+			float: left
+			height: 100px
+			padding: 5px 0
+			border-bottom: 1px dotted #DADADA
+
+			.thumb
+				width: 25%
+				height: 100px
+				overflow: hidden
+				position: relative
+				float: left
+
+				img
+					width: 100%
+					height: auto
+					position: absolute
+					left: 0
+					top: 0
+
+			.info
+				width: 50%
+				float: left
+				font-family: 'Roboto Slab', serif
+				color: #FFF
+
+				.info-content
+					margin: 5px
+
+					.price-tag
+						font-size: 1.6em
+
+			.add-to-cart
+				width: 25%
+				background: rgba(208,49,49,1)
+				float: left
+				color: #FFF
+				height: 100px
+				text-align: center
+				font-family: 'Roboto Slab', serif
+				font-weight: 100
+				cursor: pointer
+
+				&:hover
+					background: rgba(208,49,49,0.8)
+
+				.small
+					display: block
+					width: 100%
+					margin-top: 35px
+
+				.big
+					display: block
+					width: 100%
+
+
+
+
+.menu
+	background: rgba(0,0,0,0.8)
+	position: absolute
+	left: 0
+	top: 0
+	z-index: 3
+	color: #FFF
+	width: 100%
+	height: 50px
+
+	.logo
+		float: left
+		width: 100px
+		height: 50px
+		display: table
+		text-align: center
+
+		span
+			font-size: 1.4em
+			font-family: 'Roboto Slab', serif
+			display: table-cell
+			vertical-align: middle
+
+
+	#menu-button
+		height: 50px
+		background: none
+		float: right
+		color: #FFF
+		font-size: 1.4em
+		font-family: 'Roboto Slab', serif
+		width: 100px
+		border: none
+		cursor: pointer
+		outline: none
+
+
+	.menu-icon
+		width: 50px
+		height: 42px
+		background: rgba(255,255,255,0.2)
+		text-align: center
+		padding-top: 8px
+		cursor: pointer
+		float: left
+
+		span
+			display: block
+			width: 30px
+			background: #FFF
+			height: 5px
+			margin: 5px 0 0 10px
+			float: left
