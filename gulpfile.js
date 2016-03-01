@@ -16,7 +16,7 @@ const config = {
   assets: 'src/**/*.{html,png,jpg,jpeg,gif,svg}',
   sass: ['src/sass/**/*.sass'],
   test: 'test/**/*.js',
-  index: 'public/swipe.js',
+  index: 'public/main.js',
   bundle: `four-swipe-${process.env.VERSION || '0.0.0'}.js`
 }
 
