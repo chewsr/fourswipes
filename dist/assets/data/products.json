@@ -1,0 +1,62 @@
+[
+{
+  "sku": "a001",
+  "name": "Food Title One",
+  "url":"assets/photo-01.jpg",
+  "price": 23.99
+},
+{
+  "sku": "a002",
+  "name": "Food Title Two",
+  "url":"assets/photo-02.jpg",
+  "price": 12.99
+},
+{
+  "sku": "a003",
+  "name": "Food Title Three",
+  "url":"assets/photo-03.jpg",
+  "price": 17.50
+},
+{
+  "sku": "a004",
+  "name": "Food Title Four",
+  "url":"assets/photo-04.jpg",
+  "price": 12.50
+},
+{
+  "sku": "a005",
+  "name": "Food Title Five",
+  "url":"assets/photo-05.jpg",
+  "price": 23.99
+},
+{
+  "sku": "a006",
+  "name": "Food Title Six",
+  "url":"assets/photo-06.jpg",
+  "price": 20.99
+},
+{
+  "sku": "a007",
+  "name": "Food Title Seven",
+  "url":"assets/photo-07.jpg",
+  "price": 13.50
+},
+{
+  "sku": "a008",
+  "name": "Food Title Eight",
+  "url":"assets/photo-08.jpg",
+  "price": 12.50
+},
+{
+  "sku": "a009",
+  "name": "Food Title Nine",
+  "url":"assets/photo-09.jpg",
+  "price": 23.99
+},
+{
+  "sku": "a010",
+  "name": "Food Title Ten",
+  "url":"assets/photo-09.jpg",
+  "price": 23.99
+}
+]

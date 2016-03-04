@@ -30,6 +30,267 @@ h1 {
   top: 0;
   left: 0; }
 
+#my-nav {
+  width: 200px;
+  height: 203px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  text-align: center; }
+  #my-nav .button {
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    cursor: pointer;
+    border: 1px solid #FFF;
+    display: table;
+    background: #333;
+    color: #FFF; }
+    #my-nav .button:hover {
+      background: #000; }
+    #my-nav .button span {
+      display: table-cell;
+      vertical-align: middle;
+      font-size: 0.8em; }
+  #my-nav .top {
+    left: 50px; }
+  #my-nav .bottom {
+    left: 50px;
+    bottom: 0; }
+  #my-nav .left {
+    width: 100px;
+    height: 100px;
+    left: 0;
+    top: 50px; }
+  #my-nav .right {
+    width: 100px;
+    height: 100px;
+    right: 0;
+    top: 50px; }
+
+#cart-page {
+  position: absolute;
+  left: 0;
+  top: -1000px;
+  background: #333;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.2s linear;
+  overflow: auto; }
+  #cart-page.showed {
+    top: 0;
+    transition: all 0.2s linear; }
+  #cart-page .total {
+    color: #FFF;
+    font-size: 1.8em;
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+    margin: 15px 0;
+    float: left;
+    width: 100%; }
+  #cart-page h3 {
+    margin: 70px 10px 10px 10px;
+    padding: 0;
+    color: #FFF;
+    font-family: 'Roboto Slab', serif; }
+  #cart-page ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+  #cart-page li {
+    display: block;
+    width: 100%;
+    float: left;
+    height: 100px;
+    padding: 5px 0;
+    border-bottom: 1px dotted #DADADA; }
+    #cart-page li .thumb {
+      width: 25%;
+      height: 100px;
+      overflow: hidden;
+      position: relative;
+      float: left; }
+      #cart-page li .thumb img {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        left: 0;
+        top: 0; }
+    #cart-page li .info {
+      width: 45%;
+      float: left;
+      font-family: 'Roboto Slab', serif;
+      color: #FFF; }
+      #cart-page li .info .info-content {
+        margin: 5px; }
+        #cart-page li .info .info-content .price-tag {
+          font-size: 1.6em; }
+    #cart-page li .less, #cart-page li .more {
+      width: 15%;
+      background: #d6d6d6;
+      float: left;
+      color: #000;
+      height: 100px;
+      text-align: center;
+      font-family: 'Roboto Slab', serif;
+      font-weight: 300;
+      cursor: pointer; }
+      #cart-page li .less:hover, #cart-page li .more:hover {
+        background: rgba(214, 214, 214, 0.8); }
+      #cart-page li .less .small, #cart-page li .more .small {
+        display: block;
+        width: 100%;
+        margin-top: 35px; }
+      #cart-page li .less .big, #cart-page li .more .big {
+        display: block;
+        width: 100%; }
+    #cart-page li .more {
+      background: #d03131; }
+      #cart-page li .more:hover {
+        background: rgba(208, 49, 49, 0.8); }
+
+.menu {
+  background: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  color: #FFF;
+  width: 100%;
+  height: 50px; }
+  .menu .logo {
+    float: left;
+    width: 100px;
+    height: 50px;
+    display: table;
+    text-align: center; }
+    .menu .logo span {
+      font-size: 1.4em;
+      font-family: 'Roboto Slab', serif;
+      display: table-cell;
+      vertical-align: middle; }
+  .menu #menu-button {
+    height: 50px;
+    background: none;
+    float: right;
+    margin-right: 50px;
+    color: #FFF;
+    font-size: 1.4em;
+    font-family: 'Roboto Slab', serif;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    outline: none; }
+  .menu .cart-wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer; }
+    .menu .cart-wrapper .dialog {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: red;
+      display: table;
+      border-radius: 50%;
+      text-align: center; }
+      .menu .cart-wrapper .dialog span {
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 0.8em; }
+    .menu .cart-wrapper img {
+      width: 40px;
+      height: 40px;
+      margin: 5px; }
+  .menu .menu-icon {
+    width: 50px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    padding-top: 8px;
+    cursor: pointer;
+    float: left; }
+    .menu .menu-icon span {
+      display: block;
+      width: 30px;
+      background: #FFF;
+      height: 5px;
+      margin: 5px 0 0 10px;
+      float: left; }
+
+#short-page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #333;
+  top: 0;
+  z-index: 1;
+  right: -1000px;
+  transition: all 0.2s linear;
+  overflow: auto; }
+  #short-page.showed {
+    right: 0;
+    transition: all 0.3 linear; }
+  #short-page h3 {
+    margin: 70px 10px 10px 10px;
+    padding: 0;
+    color: #FFF;
+    font-family: 'Roboto Slab', serif; }
+  #short-page ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    #short-page ul li {
+      display: block;
+      width: 100%;
+      float: left;
+      height: 100px;
+      padding: 5px 0;
+      border-bottom: 1px dotted #DADADA; }
+      #short-page ul li .thumb {
+        width: 25%;
+        height: 100px;
+        overflow: hidden;
+        position: relative;
+        float: left; }
+        #short-page ul li .thumb img {
+          width: 100%;
+          height: auto;
+          position: absolute;
+          left: 0;
+          top: 0; }
+      #short-page ul li .info {
+        width: 50%;
+        float: left;
+        font-family: 'Roboto Slab', serif;
+        color: #FFF; }
+        #short-page ul li .info .info-content {
+          margin: 5px; }
+          #short-page ul li .info .info-content .price-tag {
+            font-size: 1.6em; }
+      #short-page ul li .add-to-cart {
+        width: 25%;
+        background: #d03131;
+        float: left;
+        color: #FFF;
+        height: 100px;
+        text-align: center;
+        font-family: 'Roboto Slab', serif;
+        font-weight: 100;
+        cursor: pointer; }
+        #short-page ul li .add-to-cart:hover {
+          background: rgba(208, 49, 49, 0.8); }
+        #short-page ul li .add-to-cart .small {
+          display: block;
+          width: 100%;
+          margin-top: 35px; }
+        #short-page ul li .add-to-cart .big {
+          display: block;
+          width: 100%; }
+
 #swipe-page {
   border: 0;
   background: #333;
@@ -163,44 +424,6 @@ h1 {
           font-family: 'Roboto Slab', serif;
           font-size: 1.4em; }
 
-#my-nav {
-  width: 200px;
-  height: 203px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  text-align: center; }
-  #my-nav .button {
-    width: 100px;
-    height: 50px;
-    position: absolute;
-    cursor: pointer;
-    border: 1px solid #FFF;
-    display: table;
-    background: #333;
-    color: #FFF; }
-    #my-nav .button:hover {
-      background: #000; }
-    #my-nav .button span {
-      display: table-cell;
-      vertical-align: middle;
-      font-size: 0.8em; }
-  #my-nav .top {
-    left: 50px; }
-  #my-nav .bottom {
-    left: 50px;
-    bottom: 0; }
-  #my-nav .left {
-    width: 100px;
-    height: 100px;
-    left: 0;
-    top: 50px; }
-  #my-nav .right {
-    width: 100px;
-    height: 100px;
-    right: 0;
-    top: 50px; }
-
 #trash-page {
   width: 100%;
   height: 100%;
@@ -270,50 +493,3 @@ h1 {
         #trash-page ul li .add-to-cart .big {
           display: block;
           width: 100%; }
-
-.menu {
-  background: rgba(0, 0, 0, 0.8);
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 3;
-  color: #FFF;
-  width: 100%;
-  height: 50px; }
-  .menu .logo {
-    float: left;
-    width: 100px;
-    height: 50px;
-    display: table;
-    text-align: center; }
-    .menu .logo span {
-      font-size: 1.4em;
-      font-family: 'Roboto Slab', serif;
-      display: table-cell;
-      vertical-align: middle; }
-  .menu #menu-button {
-    height: 50px;
-    background: none;
-    float: right;
-    color: #FFF;
-    font-size: 1.4em;
-    font-family: 'Roboto Slab', serif;
-    width: 100px;
-    border: none;
-    cursor: pointer;
-    outline: none; }
-  .menu .menu-icon {
-    width: 50px;
-    height: 42px;
-    background: rgba(255, 255, 255, 0.2);
-    text-align: center;
-    padding-top: 8px;
-    cursor: pointer;
-    float: left; }
-    .menu .menu-icon span {
-      display: block;
-      width: 30px;
-      background: #FFF;
-      height: 5px;
-      margin: 5px 0 0 10px;
-      float: left; }
