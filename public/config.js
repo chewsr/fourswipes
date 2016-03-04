@@ -18,7 +18,7 @@ System.config({
     "clean-css": "npm:clean-css@3.4.9",
     "core-js": "npm:core-js@1.2.6",
     "css": "github:systemjs/plugin-css@0.1.20",
-    "jquery": "npm:jquery@2.2.0",
+    "jquery": "npm:jquery@2.2.1",
     "react": "npm:react@0.14.6",
     "react-dom": "npm:react-dom@0.14.6",
     "scss": "github:mobilexag/plugin-sass@0.1.0",

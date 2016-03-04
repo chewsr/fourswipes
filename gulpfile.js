@@ -13,7 +13,7 @@ const config = {
   dist: 'dist',
   es6: ['src/*.js', 'src/{components,containers}/**'],
   es5: ['src/jspm_packages/**/*', 'src/config.js'],
-  assets: 'src/**/*.{html,png,jpg,jpeg,gif,svg}',
+  assets: 'src/**/*.{html,png,jpg,jpeg,gif,svg,json}',
   sass: ['src/sass/**/*.sass'],
   test: 'test/**/*.js',
   index: 'public/main.js',
@@ -50,7 +50,7 @@ gulp.task('build-dist', () => {
   gulp.src('public/style.css')
   .pipe(gulp.dest(config.dist))
 
-  gulp.src('src/assets/*.{jpg,svg}')
+  gulp.src('src/assets/*.{jpg,svg,json}')
   .pipe(gulp.dest(config.dist + '/assets'))
 })
 

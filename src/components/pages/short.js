@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 
-class Trash extends Component {
+class Short extends Component {
   constructor(props) {
     super(props)
 
   }
   render () {
 
-    let trashPageIn = ""
+
+
+    let shortPageIn = ""
 
     if (this.props.show) {
-      trashPageIn = "showed"
+      shortPageIn = "showed"
     }
 
-    let trashContent = this.props.mylist.map((item) => {
+    let shortContent = this.props.mylist.map((item) => {
       return (
         <li key={item.sku}>
           <div className="thumb">
@@ -34,12 +36,12 @@ class Trash extends Component {
     })
 
     return (
-      <div id="trash-page" className={trashPageIn}>
-        <h3>Trash list</h3>
-        <ul>{trashContent}</ul>
+      <div id="short-page" className={shortPageIn}>
+        <h3>Short list</h3>
+        <ul>{shortContent}</ul>
       </div>
     )
   }
 }
 
-export default Trash
+export default Short

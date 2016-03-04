@@ -27,7 +27,7 @@ var Utils = {
       })
   },
   skuProducts: (products) => {
-    let newProducts = []
+    let newProducts = {}
     products.map((item)=>{
       newProducts[item.sku] = item
     })

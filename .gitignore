@@ -2,4 +2,3 @@ Swipe-*
 node_modules
 public/**
 !public/config.js
-.DS_Store

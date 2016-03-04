@@ -233,6 +233,89 @@ h1
 
 
 
+#short-page
+	width: 100%
+	height: 100%
+	position: absolute
+	background: #333
+	top: 0
+	z-index: 1
+	right: -1000px
+	transition: all 0.2s linear
+	overflow: auto
+
+	&.showed
+		right: 0
+		transition: all 0.3 linear
+
+	h3
+		margin: 70px 10px 10px 10px
+		padding: 0
+		color: #FFF
+		font-family: 'Roboto Slab', serif
+
+	ul
+		margin: 0
+		padding: 0
+		list-style-type: none
+
+		li
+			display: block
+			width: 100%
+			float: left
+			height: 100px
+			padding: 5px 0
+			border-bottom: 1px dotted #DADADA
+
+			.thumb
+				width: 25%
+				height: 100px
+				overflow: hidden
+				position: relative
+				float: left
+
+				img
+					width: 100%
+					height: auto
+					position: absolute
+					left: 0
+					top: 0
+
+			.info
+				width: 50%
+				float: left
+				font-family: 'Roboto Slab', serif
+				color: #FFF
+
+				.info-content
+					margin: 5px
+
+					.price-tag
+						font-size: 1.6em
+
+			.add-to-cart
+				width: 25%
+				background: rgba(208,49,49,1)
+				float: left
+				color: #FFF
+				height: 100px
+				text-align: center
+				font-family: 'Roboto Slab', serif
+				font-weight: 100
+				cursor: pointer
+
+				&:hover
+					background: rgba(208,49,49,0.8)
+
+				.small
+					display: block
+					width: 100%
+					margin-top: 35px
+
+				.big
+					display: block
+					width: 100%
+
 #trash-page
 	width: 100%
 	height: 100%
@@ -347,6 +430,7 @@ h1
 		height: 50px
 		background: none
 		float: right
+		margin-right: 50px
 		color: #FFF
 		font-size: 1.4em
 		font-family: 'Roboto Slab', serif
@@ -354,6 +438,34 @@ h1
 		border: none
 		cursor: pointer
 		outline: none
+
+	.cart-wrapper
+		position: absolute
+		right: 0
+		top: 0
+		cursor: pointer
+
+		.dialog
+			width: 20px
+			height: 20px
+			position: absolute
+			top: 0
+			right: 0
+			background: red
+			display: table
+			border-radius: 50%
+			text-align: center
+
+			span
+				display: table-cell
+				vertical-align: middle
+				font-size: 0.8em
+
+
+		img
+			width: 40px
+			height: 40px
+			margin: 5px
 
 
 	.menu-icon
