@@ -32,6 +32,9 @@ var Utils = {
       newProducts[item.sku] = item
     })
     return newProducts
+  },
+  checkInCart: (sku,cartItems) => {
+    return (cartItems.indexOf(sku) > -1) ? true : false
   }
 }
 

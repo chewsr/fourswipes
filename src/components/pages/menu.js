@@ -16,21 +16,26 @@ class Menu extends Component {
 
   }
 
+  getCartPage(){
+    this.props.pageUpdate('cart-page')
+  }
+
   render() {
 
     let type = this.props.data
     let menuContent = ''
     let hamburgerMenu = (<div className="menu-icon"><span></span><span></span><span></span></div>)
     let logo = (<div className="logo"><span>chewsr</span></div>)
-    if (type === 'trash-page' || type == 'short-page') {
+    if (type === 'trash-page' || type == 'short-page' || type == 'cart-page') {
       menuContent = (<button id="menu-button" data-page="home-page">BACK</button>)
     } else {
       menuContent = (<button id="menu-button" data-page="cart-page">CART</button>)
     }
 
-    let cart = (<div className="cart-wrapper">
+
+    let cart = (<div className="cart-wrapper" onClick={this.getCartPage.bind(this)}>
       <img src="assets/icon-cart.svg" />
-      <div className="dialog"><span>0</span></div>
+      <div className="dialog"><span>{this.props.cartItems}</span></div>
     </div>)
 
     return (

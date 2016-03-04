@@ -16,6 +16,7 @@ class App extends Component {
       proData: {},
       trashPageIn: "",
       shortPageIn: "",
+      cartPageIn: "",
       curPage: "home-page",
       trashList: [],
       shortList: [],
@@ -49,6 +50,9 @@ class App extends Component {
     } else if (page == 'short-page') {
       this.clearPages()
       this.setState({shortPageIn: "showed"})
+    } else if (page == 'cart-page') {
+      this.clearPages()
+      this.setState({cartPageIn: "showed"})
     }
 
   }
@@ -56,45 +60,95 @@ class App extends Component {
   clearPages(){
     this.setState({trashPageIn: ""})
     this.setState({shortPageIn: ""})
+    this.setState({cartPageIn: ""})
   }
 
-  addToTrash(item){
+  addToTrash(sku){
     let curList = this.state.trashList
-    curList.push(item)
+    curList.push(sku)
     this.setState({
       trashList: curList
     })
   }
 
-  addToShort(item){
+  addToShort(sku){
     let curList = this.state.shortList
-    curList.push(item)
+    curList.push(sku)
     this.setState({
       shortList: curList
     })
   }
 
-  addToCart(item){
-    let curList = this.state.cartList
-    curList.push(item)
+  removeFromTrash(sku) {
+    let curList = this.state.trashList
+    let index = curList.indexOf(sku)
+    if (index > -1) {
+      curList.splice(index,1)
+    }
     this.setState({
-      cartList: curList
+      trashList: curList
     })
   }
 
+  removeFromShort(sku) {
+    let curList = this.state.shortList
+    let index = curList.indexOf(sku)
+    if (index > -1) {
+      curList.splice(index,1)
+    }
+    this.setState({
+      shortList: curList
+    })
+  }
+
+  addToCart(sku){
+    let curList = this.state.cartList
+    curList.push(sku)
+    this.setState({
+      cartList: curList
+    })
+
+    this.removeFromTrash(sku)
+    this.removeFromShort(sku)
+  }
+
   render() {
+
+    let cartItems = this.state.cartList.length
     return (
       <div className="pages-wrapper">
-        <Trash pageUpdate={this.pageUpdate.bind(this)} show={this.state.trashPageIn} mylist={this.state.trashList} />
-        <Short pageUpdate={this.pageUpdate.bind(this)} show={this.state.shortPageIn} mylist={this.state.shortList} />
+        <Cart
+          pageUpdate={this.pageUpdate.bind(this)}
+          show={this.state.cartPageIn}
+          cartItems={this.state.cartList}
+          products={this.state.products}
+        />
+        <Trash
+          pageUpdate={this.pageUpdate.bind(this)}
+          show={this.state.trashPageIn}
+          mylist={this.state.trashList}
+          products={this.state.products}
+          addToCart={this.addToCart.bind(this)}
+          cartItems={this.state.cartList}
+        />
+        <Short
+          pageUpdate={this.pageUpdate.bind(this)}
+          show={this.state.shortPageIn}
+          mylist={this.state.shortList}
+          products={this.state.products}
+          addToCart={this.addToCart.bind(this)}
+          cartItems={this.state.cartList}
+        />
         <Swipe
           addToTrash={this.addToTrash.bind(this)}
           addToShort={this.addToShort.bind(this)}
           addToCart={this.addToCart.bind(this)}
           pageUpdate={this.pageUpdate.bind(this)}
           products={this.state.products}
+          trashList={this.state.trashList}
+          shortList={this.state.shortList}
         />
-        <Menu pageUpdate={this.pageUpdate.bind(this)} data={this.state.curPage} />
+        <Menu pageUpdate={this.pageUpdate.bind(this)} data={this.state.curPage} cartItems={cartItems}/>
       </div>
     )
 

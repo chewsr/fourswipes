@@ -5,9 +5,13 @@ class Short extends Component {
     super(props)
 
   }
+
+  addToCart(evt){
+    let sku = evt.currentTarget.getAttribute('data-sku')
+    this.props.addToCart(sku)
+  }
+
   render () {
-
-
 
     let shortPageIn = ""
 
@@ -15,7 +19,8 @@ class Short extends Component {
       shortPageIn = "showed"
     }
 
-    let shortContent = this.props.mylist.map((item) => {
+    let shortContent = this.props.mylist.map((sku) => {
+      let item = this.props.products[sku]
       return (
         <li key={item.sku}>
           <div className="thumb">
@@ -27,7 +32,7 @@ class Short extends Component {
               <div className="price-tag">${item.price}</div>
             </div>
           </div>
-          <div className="add-to-cart">
+          <div className="add-to-cart" onClick={this.addToCart.bind(this)} data-sku={item.sku}>
             <span className="small">Add To</span>
             <span className="big">Cart</span>
           </div>

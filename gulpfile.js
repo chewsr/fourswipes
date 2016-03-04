@@ -14,7 +14,7 @@ const config = {
   es6: ['src/*.js', 'src/{components,containers}/**'],
   es5: ['src/jspm_packages/**/*', 'src/config.js'],
   assets: 'src/**/*.{html,png,jpg,jpeg,gif,svg,json}',
-  sass: ['src/sass/**/*.sass'],
+  sass: ['src/sass/*.sass','src/sass/pages/*.sass'],
   test: 'test/**/*.js',
   index: 'public/main.js',
   bundle: `four-swipe-${process.env.VERSION || '0.0.0'}.js`
@@ -57,6 +57,7 @@ gulp.task('build-dist', () => {
 gulp.task('sass', function () {
   return gulp.src(config.sass)
     .pipe(plug.sass())
+    .pipe(plug.concat('style.css'))
     .pipe(gulp.dest(config.public))
 })
 

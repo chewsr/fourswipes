@@ -3,10 +3,6 @@ import {Utils} from '../Utils.js'
 
 
 
-var trashArr = []
-var favArr = []
-var trashPage
-var listPage
 var loaded = false
 
 class Swipe extends Component {
@@ -14,10 +10,9 @@ class Swipe extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      trash: 0,
       shortlist: 0,
       trashDialogCSS: "dialog",
-      shortlistDialogCSS:"dialog",
+      shortlistDialogCSS: "dialog",
       loaded: false
     }
   }
@@ -89,10 +84,8 @@ class Swipe extends Component {
     doms[last].setAttribute('style','transition: all ' + duration + 's linear; left: -1000px ')
     let sku = doms[last].getAttribute('data-sku')
 
-    trashArr.push(this.props.products[sku])
-    this.setState({trash: trashArr.length})
     this.setState({trashDialogCSS: "dialog showed bump"})
-    this.props.addToTrash(this.props.products[sku])
+    this.props.addToTrash(sku)
 
     setTimeout(()=>{
       doms[last].remove()
@@ -106,10 +99,8 @@ class Swipe extends Component {
     let duration = 0.4
     doms[last].setAttribute('style','transition: all ' + duration + 's linear; left: 1000px ')
     let sku = doms[last].getAttribute('data-sku')
-    favArr.push(this.props.products[sku])
-    this.setState({shortlist: favArr.length})
     this.setState({shortlistDialogCSS: "dialog showed bump"})
-    this.props.addToShort(this.props.products[sku])
+    this.props.addToShort(sku)
 
     setTimeout(()=>{
       doms[last].remove()
@@ -127,6 +118,9 @@ class Swipe extends Component {
     let products = $.map(this.props.products, (value, index) => {
       return [value];
     })
+
+    let trashItems = this.props.trashList.length
+    let shortItems = this.props.shortList.length
 
     this.init(products)
 
@@ -152,13 +146,13 @@ class Swipe extends Component {
             <div className="trash-wrapper">
               <div className="btn" id="trash-list-btn"><img src="assets/icon-trash.svg"/></div>
               <div className={this.state.trashDialogCSS}>
-                <span>{this.state.trash}</span>
+                <span>{trashItems}</span>
               </div>
             </div>
             <div className="plus-wrapper">
               <div className="btn" id="short-list-btn"><img src="assets/icon-plus.svg"/></div>
               <div className={this.state.shortlistDialogCSS}>
-                <span>{this.state.shortlist}</span>
+                <span>{shortItems}</span>
               </div>
             </div>
           </div>
