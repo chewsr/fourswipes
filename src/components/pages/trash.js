@@ -23,7 +23,6 @@ class Trash extends Component {
     let trashContent = this.props.mylist.map((sku) => {
 
       let item = this.props.products[sku]
-      if (!Utils.checkInCart(item.sku,this.props.cartItems)) {
         return (
           <li key={item.sku}>
             <div className="thumb">
@@ -41,7 +40,6 @@ class Trash extends Component {
             </div>
           </li>
         )
-      }
       
     })
 

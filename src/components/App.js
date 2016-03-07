@@ -20,7 +20,7 @@ class App extends Component {
       curPage: "home-page",
       trashList: [],
       shortList: [],
-      cartList: []
+      cartList: {}
     }
   }
 
@@ -101,9 +101,31 @@ class App extends Component {
     })
   }
 
+  updateCart(type,sku) {
+    let curList = this.state.cartList
+    let curQuantity = curList[sku].quantity
+    if (type == 'more') curQuantity++
+      else if (type == 'less' && curQuantity >1) curQuantity--
+
+
+    curList[sku] = {
+      sku: sku,
+      quantity: curQuantity
+    }
+
+    this.setState({
+      cartList: curList
+    })
+  }
+
   addToCart(sku){
     let curList = this.state.cartList
-    curList.push(sku)
+    let cartItem = {
+      sku: sku,
+      quantity: 1
+    }
+    curList[sku] = cartItem
+
     this.setState({
       cartList: curList
     })
@@ -114,7 +136,8 @@ class App extends Component {
 
   render() {
 
-    let cartItems = this.state.cartList.length
+    let cartItems = this.state.cartList
+
     return (
       <div className="pages-wrapper">
         <Cart
@@ -122,6 +145,7 @@ class App extends Component {
           show={this.state.cartPageIn}
           cartItems={this.state.cartList}
           products={this.state.products}
+          updateCart={this.updateCart.bind(this)}
         />
         <Trash
           pageUpdate={this.pageUpdate.bind(this)}
@@ -129,6 +153,7 @@ class App extends Component {
           mylist={this.state.trashList}
           products={this.state.products}
           addToCart={this.addToCart.bind(this)}
+          updateCart={this.updateCart.bind(this)}
           cartItems={this.state.cartList}
         />
         <Short

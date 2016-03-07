@@ -98,57 +98,69 @@ h1 {
     margin: 0;
     padding: 0;
     list-style-type: none; }
-  #cart-page li {
-    display: block;
-    width: 100%;
-    float: left;
-    height: 100px;
-    padding: 5px 0;
-    border-bottom: 1px dotted #DADADA; }
-    #cart-page li .thumb {
-      width: 25%;
-      height: 100px;
-      overflow: hidden;
-      position: relative;
-      float: left; }
-      #cart-page li .thumb img {
-        width: 100%;
-        height: auto;
-        position: absolute;
-        left: 0;
-        top: 0; }
-    #cart-page li .info {
-      width: 45%;
+    #cart-page ul li {
+      display: block;
+      width: 100%;
       float: left;
-      font-family: 'Roboto Slab', serif;
-      color: #FFF; }
-      #cart-page li .info .info-content {
-        margin: 5px; }
-        #cart-page li .info .info-content .price-tag {
-          font-size: 1.6em; }
-    #cart-page li .less, #cart-page li .more {
-      width: 15%;
-      background: #d6d6d6;
-      float: left;
-      color: #000;
-      height: 100px;
-      text-align: center;
-      font-family: 'Roboto Slab', serif;
-      font-weight: 300;
-      cursor: pointer; }
-      #cart-page li .less:hover, #cart-page li .more:hover {
-        background: rgba(214, 214, 214, 0.8); }
-      #cart-page li .less .small, #cart-page li .more .small {
-        display: block;
-        width: 100%;
-        margin-top: 35px; }
-      #cart-page li .less .big, #cart-page li .more .big {
-        display: block;
-        width: 100%; }
-    #cart-page li .more {
-      background: #d03131; }
-      #cart-page li .more:hover {
-        background: rgba(208, 49, 49, 0.8); }
+      min-height: 100px;
+      padding: 5px 0;
+      border-bottom: 1px dotted #DADADA; }
+      #cart-page ul li .thumb-wrapper {
+        width: 25%;
+        float: left;
+        height: 120px; }
+        #cart-page ul li .thumb-wrapper .thumb {
+          width: 100%;
+          height: 100px;
+          overflow: hidden;
+          position: relative;
+          float: left; }
+          #cart-page ul li .thumb-wrapper .thumb img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            left: 0;
+            top: 0; }
+        #cart-page ul li .thumb-wrapper .remove-btn {
+          font-size: 1.0em;
+          cursor: pointer;
+          float: left;
+          width: 100%;
+          color: #FFF;
+          font-family: 'Roboto Slab', serif;
+          text-align: center; }
+      #cart-page ul li .info {
+        width: 45%;
+        float: left;
+        font-family: 'Roboto Slab', serif;
+        color: #FFF; }
+        #cart-page ul li .info .info-content {
+          margin: 5px; }
+          #cart-page ul li .info .info-content .price-tag {
+            font-size: 1.6em; }
+      #cart-page ul li .add-less, #cart-page ul li .add-more {
+        width: 15%;
+        background: #d6d6d6;
+        float: left;
+        color: #000;
+        height: 100px;
+        text-align: center;
+        font-family: 'Roboto Slab', serif;
+        font-weight: 300;
+        cursor: pointer; }
+        #cart-page ul li .add-less:hover, #cart-page ul li .add-more:hover {
+          background: rgba(214, 214, 214, 0.8); }
+        #cart-page ul li .add-less .small, #cart-page ul li .add-more .small {
+          display: block;
+          width: 100%;
+          margin-top: 35px; }
+        #cart-page ul li .add-less .big, #cart-page ul li .add-more .big {
+          display: block;
+          width: 100%; }
+      #cart-page ul li .add-more {
+        background: #d03131; }
+        #cart-page ul li .add-more:hover {
+          background: rgba(208, 49, 49, 0.8); }
 
 .menu {
   background: rgba(0, 0, 0, 0.8);

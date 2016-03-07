@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Utils} from '../Utils.js'
 
 class Menu extends Component {
 
@@ -23,6 +24,7 @@ class Menu extends Component {
   render() {
 
     let type = this.props.data
+    let countItems = Utils.countCartItems(this.props.cartItems)
     let menuContent = ''
     let hamburgerMenu = (<div className="menu-icon"><span></span><span></span><span></span></div>)
     let logo = (<div className="logo"><span>chewsr</span></div>)
@@ -35,7 +37,7 @@ class Menu extends Component {
 
     let cart = (<div className="cart-wrapper" onClick={this.getCartPage.bind(this)}>
       <img src="assets/icon-cart.svg" />
-      <div className="dialog"><span>{this.props.cartItems}</span></div>
+      <div className="dialog"><span>{countItems}</span></div>
     </div>)
 
     return (
