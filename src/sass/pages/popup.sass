@@ -1,0 +1,62 @@
+#popup-page
+  position: absolute
+  left: 0
+  top: 0
+  background: #FFF
+  width: 100%
+  height: 100%
+  z-index: 1
+  transition: all 0.2s linear
+  overflow: auto
+  text-align: center
+  display: none
+
+  &.showed
+    display: block
+    opacity: 0
+
+  &.fade-in
+    opacity: 1
+    transition: all 0.2s linear
+
+  &.fade-out
+    opacity: 0
+    transition: all 0.2s linear
+
+
+  .info-content
+    float: left
+    width: 100%
+    text-align: left
+
+    .thumb-wrapper
+      width: 100%
+      height: 400px
+      float: left
+      overflow: hidden
+
+      img
+        width: 100%
+        height: auto
+
+    .description
+      padding: 0px 10px 0 10px
+      position: relative
+      float: left
+
+      h3
+        width: 100%
+        float: left
+
+      .price-tag
+        font-size: 1.4em
+
+      .close-btn
+        background: #FFF
+        position: absolute
+        top: -40px
+        right: 0
+        padding: 10px
+        cursor: pointer
+        font-size: 1.4em
+        color: rgba(208,49,49,0.8)

@@ -16,6 +16,23 @@ class Cart extends Component {
     this.props.updateCart("less",sku)
   }
 
+  removeItem(evt) {
+    let sku = evt.currentTarget.getAttribute('data-sku')
+    this.props.removeItem(sku)
+  }
+
+  pageUpdate(evt){
+    let page = evt.currentTarget.getAttribute('data-page')
+    let sku = evt.currentTarget.getAttribute('data-sku')
+    this.props.pageUpdate(page,sku)
+  }
+
+  pagePopup(evt){
+    let page = evt.currentTarget.getAttribute('data-page')
+    let sku = evt.currentTarget.getAttribute('data-sku')
+    this.props.pagePopup(page,sku)
+  }
+
   render(){
     let cartPageIn = ""
 
@@ -37,15 +54,15 @@ class Cart extends Component {
       return (
         <li key={item.sku}>
           <div className="thumb-wrapper">
-            <div className="thumb">
+            <div className="thumb" onClick={this.pagePopup.bind(this)} data-page="popup-page" data-sku={item.sku}>
               <img src={item.url}/>
             </div>
-            <div className="remove-btn">[Remove]</div>
+            <div className="remove-btn" onClick={this.removeItem.bind(this)} data-sku={item.sku}>[Remove]</div>
           </div>
           <div className="info">
             <div className="info-content">
               {item.name}
-              <div className="price-tag"><small>x{itemInCart.quantity}</small><br/>${itemTotalPrice}</div>
+              <div className="price-tag"><small> x {itemInCart.quantity}</small><br/>${itemTotalPrice}</div>
             </div>
           </div>
 
@@ -68,6 +85,10 @@ class Cart extends Component {
         {cartContent}
         </ul>
         <div className="total">Total: ${Utils.numberFormat(totalCart,2,'.',',')}</div>
+        <div className="button-wrapper">
+          <div className="back-btn" data-page="home-page" onClick={this.pageUpdate.bind(this)}>back</div>
+          <div className="next-btn">check out</div>
+        </div>
       </div>
     )
   }

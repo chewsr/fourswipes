@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Utils} from '../Utils.js'
 
+const ICON_CART = 'assets/images/icon-cart.svg'
 class Menu extends Component {
 
   constructor(props) {
@@ -28,7 +29,7 @@ class Menu extends Component {
     let menuContent = ''
     let hamburgerMenu = (<div className="menu-icon"><span></span><span></span><span></span></div>)
     let logo = (<div className="logo"><span>chewsr</span></div>)
-    if (type === 'trash-page' || type == 'short-page' || type == 'cart-page') {
+    if (type === 'trash-page' || type == 'short-page' || type == 'cart-page' || type == 'info-page') {
       menuContent = (<button id="menu-button" data-page="home-page">BACK</button>)
     } else {
       menuContent = (<button id="menu-button" data-page="cart-page">CART</button>)
@@ -36,7 +37,7 @@ class Menu extends Component {
 
 
     let cart = (<div className="cart-wrapper" onClick={this.getCartPage.bind(this)}>
-      <img src="assets/icon-cart.svg" />
+      <img src={ICON_CART} />
       <div className="dialog"><span>{countItems}</span></div>
     </div>)
 

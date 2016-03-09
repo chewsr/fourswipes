@@ -1,0 +1,21 @@
+body {
+  background: url('../images/bg.jpg');
+}
+
+.mobile-wrapper {
+	margin: auto;
+	width: 395px;
+	height: 747px;
+	background: #000;
+	border-radius: 20px;
+  }
+
+  #main-container {
+  	width: 375px;
+  	height: 667px;
+  	background: #FFF;
+  	margin: 40px 10px;
+  	float: left;
+  	position: relative;
+  	overflow: hidden;
+}

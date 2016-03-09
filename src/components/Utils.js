@@ -9,7 +9,12 @@ var Utils = {
     let marginLeft = (height*0.75 - width)/2
     return marginLeft
   },
-  preload: (images,callback) => {
+  preload: (products,callback) => {
+
+      let images = $.map(products, (value, index) => {
+        return [value];
+      })
+
       let imgArr = []
       let id = 0
       let total = images.length
@@ -44,7 +49,6 @@ var Utils = {
     return count
   },
   totalCart: (cartList,products) => {
-    console.log(cartList,products)
 
     let total = 0
 

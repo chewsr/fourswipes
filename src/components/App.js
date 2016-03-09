@@ -6,6 +6,7 @@ import Cart from './pages/cart.js'
 import Swipe from './pages/swipe.js'
 import Trash from './pages/trash.js'
 import Short from './pages/short.js'
+import Popup from './pages/popup.js'
 
 class App extends Component {
 
@@ -17,10 +18,14 @@ class App extends Component {
       trashPageIn: "",
       shortPageIn: "",
       cartPageIn: "",
+      popupPageIn: "",
       curPage: "home-page",
+      curPop: "",
       trashList: [],
       shortList: [],
-      cartList: {}
+      swipeList: [],
+      cartList: {},
+      curSku: ""
     }
   }
 
@@ -30,6 +35,14 @@ class App extends Component {
         proData: result,
         products: Utils.skuProducts(result)
       })
+
+      let swipeList = []
+      for (let sku in this.state.products) {
+        if (this.state.products.hasOwnProperty(sku)) swipeList.push(sku)
+      }
+      this.setState({
+        swipeList: swipeList
+      })
     }.bind(this))
   }
 
@@ -37,7 +50,7 @@ class App extends Component {
     this.requestData()
   }
 
-  pageUpdate(page) {
+  pageUpdate(page,param) {
     this.setState({
       curPage: page
     })
@@ -57,10 +70,26 @@ class App extends Component {
 
   }
 
+  pagePopup(page,param) {
+
+    this.setState({
+      curPop: page
+    })
+
+    if (page == 'popup-page') {
+      this.setState({popupPageIn: "showed", curSku: param})
+    }
+  }
+
+  closePopup(){
+    this.setState({popupPageIn: ""})
+  }
+
   clearPages(){
     this.setState({trashPageIn: ""})
     this.setState({shortPageIn: ""})
     this.setState({cartPageIn: ""})
+    this.setState({popupPageIn: ""})
   }
 
   addToTrash(sku){
@@ -90,6 +119,17 @@ class App extends Component {
     })
   }
 
+  removeFromSwipe(sku) {
+    let curList = this.state.swipeList
+    let index = curList.indexOf(sku)
+    if (index > -1) {
+      curList.splice(index,1)
+    }
+    this.setState({
+      swipeList: curList
+    })
+  }
+
   removeFromShort(sku) {
     let curList = this.state.shortList
     let index = curList.indexOf(sku)
@@ -99,6 +139,20 @@ class App extends Component {
     this.setState({
       shortList: curList
     })
+  }
+
+  removeItem(sku) {
+    let curList = this.state.cartList
+    delete curList[sku]
+
+    let swipeList = this.state.swipeList
+    swipeList.push(sku)
+
+    this.setState({
+      cartList: curList,
+      swipeList: swipeList
+    })
+
   }
 
   updateCart(type,sku) {
@@ -142,10 +196,12 @@ class App extends Component {
       <div className="pages-wrapper">
         <Cart
           pageUpdate={this.pageUpdate.bind(this)}
+          pagePopup={this.pagePopup.bind(this)}
           show={this.state.cartPageIn}
           cartItems={this.state.cartList}
           products={this.state.products}
           updateCart={this.updateCart.bind(this)}
+          removeItem={this.removeItem.bind(this)}
         />
         <Trash
           pageUpdate={this.pageUpdate.bind(this)}
@@ -169,9 +225,18 @@ class App extends Component {
           addToShort={this.addToShort.bind(this)}
           addToCart={this.addToCart.bind(this)}
           pageUpdate={this.pageUpdate.bind(this)}
+          pagePopup={this.pagePopup.bind(this)}
           products={this.state.products}
           trashList={this.state.trashList}
           shortList={this.state.shortList}
+          swipeList={this.state.swipeList}
+          removeFromSwipe={this.removeFromSwipe.bind(this)}
+        />
+        <Popup
+          show={this.state.popupPageIn}
+          curSku={this.state.curSku}
+          products={this.state.products}
+          closePopup={this.closePopup.bind(this)}
         />
         <Menu pageUpdate={this.pageUpdate.bind(this)} data={this.state.curPage} cartItems={cartItems}/>
       </div>

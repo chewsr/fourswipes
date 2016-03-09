@@ -8,6 +8,7 @@
   z-index: 1
   transition: all 0.2s linear
   overflow: auto
+  text-align: center
 
   &.showed
     top: 0
@@ -16,7 +17,6 @@
   .total
     color: #FFF
     font-size: 1.8em
-    font-family: 'Roboto Slab', serif
     text-align: center
     margin: 15px 0
     float: left
@@ -27,6 +27,7 @@
     padding: 0
     color: #FFF
     font-family: 'Roboto Slab', serif
+    text-align: left
 
   ul
     margin: 0
@@ -52,6 +53,7 @@
           overflow: hidden
           position: relative
           float: left
+          cursor: pointer
 
           img
             width: 100%
@@ -74,6 +76,7 @@
         float: left
         font-family: 'Roboto Slab', serif
         color: #FFF
+        text-align: left
 
         .info-content
           margin: 5px
@@ -108,3 +111,30 @@
 
         &:hover
           background: rgba(208,49,49,0.8)
+
+  .button-wrapper
+    color: #FFF
+    width: 100%
+    float: left
+    text-align: center
+    margin: 10px 0
+
+    .back-btn
+      background: rgba(172,172,172,1)
+      width: 50%
+      margin: 5px auto 5px auto
+      font-family: 'Roboto Slab', serif
+      font-size: 1.6em
+      padding: 10px
+      color: #000
+      cursor: pointer
+
+    .next-btn
+      background: rgba(0,204,153,1)
+      width: 50%
+      margin: auto
+      font-family: 'Roboto Slab', serif
+      font-size: 1.6em
+      padding: 10px
+      color: #000
+      cursor: pointer

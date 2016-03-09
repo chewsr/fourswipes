@@ -13,7 +13,7 @@ const config = {
   dist: 'dist',
   es6: ['src/*.js', 'src/{components,containers}/**'],
   es5: ['src/jspm_packages/**/*', 'src/config.js'],
-  assets: 'src/**/*.{html,png,jpg,jpeg,gif,svg,json}',
+  assets: 'src/**/*.{html,png,jpg,jpeg,gif,svg,json,css}',
   sass: ['src/sass/*.sass','src/sass/pages/*.sass'],
   test: 'test/**/*.js',
   index: 'public/main.js',
@@ -44,11 +44,11 @@ gulp.task('bundle', ['transpile', 'copy'], () => {
 
 gulp.task('build-dist', () => {
 
-  gulp.src('src/run.html')
+  gulp.src(['src/run.html','src/mobile.html'])
   .pipe(gulp.dest(config.dist))
 
-  gulp.src('public/style.css')
-  .pipe(gulp.dest(config.dist))
+  gulp.src('public/assets/style/style.css')
+  .pipe(gulp.dest(config.dist + '/assets/style'))
 
   gulp.src('src/assets/**/*.{jpg,svg,json}')
   .pipe(gulp.dest(config.dist + '/assets'))
@@ -58,7 +58,7 @@ gulp.task('sass', function () {
   return gulp.src(config.sass)
     .pipe(plug.sass())
     .pipe(plug.concat('style.css'))
-    .pipe(gulp.dest(config.public))
+    .pipe(gulp.dest(config.public + '/assets/style'))
 })
 
 gulp.task('transpile', () => {
@@ -107,3 +107,5 @@ gulp.task('clean', () => {
     `!${config.public}/jspm_packages/**/*`
   ])
 })
+
+gulp.task('mobile', ['bundle','build-dist'])
