@@ -44,7 +44,8 @@ gulp.task('bundle', ['transpile', 'copy'], () => {
 
 gulp.task('build-dist', () => {
 
-  gulp.src(['src/run.html','src/mobile.html'])
+  gulp.src(['src/mobile.html'])
+  .pipe(plug.rename('index.html'))
   .pipe(gulp.dest(config.dist))
 
   gulp.src('public/assets/style/style.css')
