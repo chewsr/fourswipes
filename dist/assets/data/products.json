@@ -1,28 +1,28 @@
 [
 {
   "sku": "a001",
-  "name": "Food Title One",
+  "name": "Pepperoni lovers",
   "url":"assets/photos/photo-01.jpg",
   "description":"Something about this food number one",
   "price": 23.99
 },
 {
   "sku": "a002",
-  "name": "Food Title Two",
+  "name": "Mushroom lovers",
   "url":"assets/photos/photo-02.jpg",
   "description":"Something about this food number two",
   "price": 12.99
 },
 {
   "sku": "a003",
-  "name": "Food Title Three",
+  "name": "Food Title Three, Food Title Three, Food Title Three",
   "url":"assets/photos/photo-03.jpg",
   "description":"Something about this food number three",
   "price": 17.50
 },
 {
   "sku": "a004",
-  "name": "Food Title Four",
+  "name": "Mushroom lovers, Mushroom lovers, Mushroom lovers, Mushroom lovers",
   "url":"assets/photos/photo-04.jpg",
   "description":"Something about this food number four",
   "price": 12.50
@@ -43,7 +43,7 @@
 },
 {
   "sku": "a007",
-  "name": "Food Title Seven",
+  "name": "Food Title Seven, Food Title Seven, Food Title Seven, Food Title Seven, Food Title Seven",
   "url":"assets/photos/photo-07.jpg",
   "description":"Something about this food number seven",
   "price": 13.50

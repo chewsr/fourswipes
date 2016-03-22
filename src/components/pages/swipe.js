@@ -1,208 +1,198 @@
 import React, { Component } from 'react'
-import {Utils} from '../Utils.js'
-
-const ICON_TRASH = 'assets/images/icon-trash.svg'
-const ICON_FAVOURITE = 'assets/images/icon-plus.svg'
-const ICON_LOGO = 'assets/images/chewsr-logo.svg'
-var touchStartX,
-    touchEndX
-
+import { Utils } from '../Utils'
 
 class Swipe extends Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
-      shortlist: 0,
-      trashDialogCSS: "dialog",
-      shortlistDialogCSS: "dialog",
-      slideCSS: "hidden"
+      sliderWidth: 0,
+      itemWidth: 0,
+      totalSlides: 0,
+      imageLeft: 0,
+      curSlide: 0,
+      curX: 0,
+      animation: '0s'
     }
-  }
 
-
-  init(products){
-      if (this.state.slideCSS == 'hidden') {
-        Utils.preload(products,()=>{
-          this.setState({
-            slideCSS: ""
-          })
-          this.centerImages()
-        })
-      }
-  }
-
-  pageUpdate(evt){
-    let page = evt.currentTarget.getAttribute('data-page')
-    let sku = evt.currentTarget.getAttribute('data-sku')
-    this.props.pageUpdate(page,sku)
-  }
-
-  pagePopup(evt){
-    let page = evt.currentTarget.getAttribute('data-page')
-    let sku = evt.currentTarget.getAttribute('data-sku')
-    this.props.pagePopup(page,sku)
-  }
-
-  centerImages(){
-    let marginLeft = Utils.leftMargin()
-    let doms = document.querySelectorAll('#swipe-wrapper li.layer img')
-
-    let content = ''
-
-    for (let key in doms) {
-      if (typeof doms[key] == 'object') {
-        doms[key].setAttribute('style','margin-left: -' + marginLeft + 'px')
-      }
+    this.statics = {
+      loadSlider: false,
+      touchStartX: 0,
+      touchMoveX: 0,
+      touchEndX: 0,
+      timeStart: 0
     }
-  }
-
-  removeItem(sku){
-    this.props.removeFromSwipe(sku)
-  }
-
-
-  triggerNav() {
-
-    /*
-    let doms = document.querySelectorAll('.button')
-
-    for (let key in doms) {
-      if (doms.hasOwnProperty(key)) {
-        let myDom = doms[key]
-        myDom.addEventListener('click', () => {
-          let myClass = myDom.getAttribute('class')
-          if (myClass.indexOf('left') > -1){
-            this.trashProduct()
-          } else if (myClass.indexOf('right') > -1) {
-            this.addProduct()
-          }
-        })
-      }
-    }
-    */
-
-    let trashBtn = document.getElementById('trash-list-btn')
-    let shortBtn = document.getElementById('short-list-btn')
-
-    trashBtn.addEventListener('click', () => {
-      this.props.pageUpdate('trash-page')
-    })
-
-    shortBtn.addEventListener('click', () => {
-      this.props.pageUpdate('short-page')
-    })
-
-
-  }
-
-  trashProduct() {
-    let doms = document.querySelectorAll('#swipe-wrapper li.layer')
-    let last = doms.length - 1
-    let duration = 0.4
-    doms[last].setAttribute('style','transition: all ' + duration + 's linear; left: -1000px ')
-    let sku = doms[last].getAttribute('data-sku')
-
-    this.setState({trashDialogCSS: "dialog showed bump"})
-    this.props.addToTrash(sku)
-
-    setTimeout(()=>{
-      this.removeItem(sku)
-      this.setState({trashDialogCSS: "dialog showed"})
-    },duration*1000)
-  }
-
-  addProduct() {
-    let doms = document.querySelectorAll('#swipe-wrapper li.layer')
-    let last = doms.length - 1
-    let duration = 0.4
-    doms[last].setAttribute('style','transition: all ' + duration + 's linear; left: 1000px ')
-    let sku = doms[last].getAttribute('data-sku')
-    this.setState({shortlistDialogCSS: "dialog showed bump"})
-    this.props.addToShort(sku)
-
-    setTimeout(()=>{
-      this.removeItem(sku)
-      this.setState({shortlistDialogCSS: "dialog showed"})
-    },duration*1000)
   }
 
   touchStart(evt) {
-    touchStartX = evt.touches[0].pageX
+    this.statics.touchStartX = evt.touches[0].pageX
+    this.setState({
+      animation: '0s'
+    })
+
+    this.statics.timeStart = Math.floor(Date.now())
   }
 
   touchMove(evt) {
     evt.preventDefault()
-    //console.log(evt.touches[0].pageX, evt.touches[0].pageY)
+    this.statics.touchMoveX = evt.touches[0].pageX
+    this.fingerMove()
   }
 
   touchEnd(evt) {
     //console.log(evt.changedTouches[0].pageX)
-    touchEndX = evt.changedTouches[0].pageX
-    let range = Math.abs(touchEndX - touchStartX)
+    this.statics.touchEndX = evt.changedTouches[0].pageX
+    let duration = Math.floor(Date.now()) - this.statics.timeStart
+    console.log(duration)
+    let range = Math.abs(this.statics.touchEndX - this.statics.touchStartX)
+    this.setState({
+      animation: '0.2s'
+    })
 
-    if (range > 50) {
-      if ((touchEndX - touchStartX < 0)) {
-        this.trashProduct()
+    if (range > 120 || (duration < 150 && range > 20)) {
+      if ((this.statics.touchEndX - this.statics.touchStartX < 0)) {
+        this.moveLeft()
+        console.log('left')
       } else {
-        this.addProduct()
+        this.moveRight()
+        console.log('right')
       }
+    }
+
+    if (range > 0 && (this.state.curSlide == 0 || this.state.curSlide == this.state.totalSlides - 1)) {
+      this.setState({
+        curX: 0,
+        animation: '0.2s'
+      })
+    } else if (range > 0) {
+      this.setState({
+        curX: 0,
+        animation: '0.2s'
+      })
+    }
+
+  }
+
+  moveLeft() {
+      if (this.state.curSlide < this.state.totalSlides - 1) {
+        let curSlide = this.state.curSlide
+        console.log(curSlide)
+        this.setState({
+          curSlide: curSlide+1,
+          curX: 0
+        })
+      }
+  }
+
+  moveRight() {
+    if (this.state.curSlide > 0) {
+      let curSlide = this.state.curSlide
+      console.log(curSlide)
+      this.setState({
+        curSlide: curSlide-1,
+        curX: 0
+      })
     }
   }
 
-  componentDidUpdate(){
+  fingerMove() {
+    let range = this.statics.touchMoveX - this.statics.touchStartX
+    this.setState({
+      curX: range
+    })
+  }
 
-    if (this.props.swipeList.length > 0) {
-      this.init(this.props.products)
+  componentDidUpdate(){
+    if (this.props.products.length > 0 && !this.statics.loadSlider) {
+      let itemWidth = Utils.pageWidth()
+      let totalSlides = this.props.products.length
+      let imageLeft = Utils.leftMargin()
+      this.setState({
+        sliderWidth: itemWidth * totalSlides,
+        itemWidth: itemWidth,
+        totalSlides: totalSlides,
+        imageLeft: imageLeft
+      })
+      this.statics.loadSlider = true
     }
   }
 
   componentDidMount(){
-
-    this.triggerNav()
   }
 
   render() {
 
-    let trashItems = this.props.trashList.length
-    let shortItems = this.props.shortList.length
+    let products = []
+    let width = 0
+    let prevSlide = this.state.curSlide - 1
+    let nextSlide = this.state.curSlide + 1
 
-    let swipeContent = this.props.swipeList.map((sku) => {
-      let item = this.props.products[sku]
-      let layerClass = "layer " + this.state.slideCSS
-      return (<li key={item.sku} className={layerClass} data-sku={item.sku}>
-              <img src={item.url} />
-              <div className="gra-bg">
-                <span className="info" data-sku={item.sku} onClick={this.pagePopup.bind(this)} data-page="popup-page">{item.name}<br/>${item.price}</span>
-              </div>
-            </li>)
-    })
+    let imageStyle = {
+      left: -this.state.imageLeft
+    }
+
+    if (typeof this.props.products != 'undefined') {
+
+      var slide = 0
+      products = this.props.products.map(item => {
+
+        let left = 0
+        let titleClass = 'title'
+        if (slide == this.state.curSlide) {
+          left = 0 + this.state.curX
+          titleClass = 'title up'
+        } else if (slide < this.state.curSlide - 1) {
+          left = -this.state.itemWidth
+        } else if (slide > this.state.curSlide + 1) {
+          left = this.state.itemWidth
+        } else if (slide == this.state.curSlide - 1) {
+          left = -this.state.itemWidth + this.state.curX
+        } else if (slide == this.state.curSlide + 1) {
+          left = this.state.itemWidth + this.state.curX
+        }
+
+        let itemStyle = {
+          width: this.state.itemWidth,
+          transform: 'translateX(' + left + 'px)',
+          transition: 'transform ' + this.state.animation + ' linear'
+        }
+
+        let slideId = 'slide-' + slide
+        slide++
+
+
+        return (
+          <li key={item.sku} style={itemStyle} id={slideId}>
+            <img src={item.url} style={imageStyle}/>
+            <div className={titleClass}><h3>{item.name} <i className="fa fa-arrow-up"></i></h3>
+              <h4>$ {item.price}</h4>
+              <div className="add-to-cart-btn"><i className="fa fa-cart-plus"></i></div>
+              <div className="add-to-favorite-btn"><i className="fa fa-heart-o"></i></div>
+
+            </div>
+          </li>
+        )
+
+      })
+    }
+
+    let sliderStyle = {
+      width: this.state.sliderWidth
+    }
 
     return (
-        <div id="swipe-page"
+      <div id="swipe-page">
+        <ul
+          style={sliderStyle}
           onTouchStart={this.touchStart.bind(this)}
           onTouchMove={this.touchMove.bind(this)}
-          onTouchEnd={this.touchEnd.bind(this)}>
-          <ul id="swipe-wrapper">
-            <li className="loading"><span><img src={ICON_LOGO} className="logo"/></span></li>
-            {swipeContent}
-          </ul>
-          <div className="select-nav">
-            <div className="trash-wrapper">
-              <div className="btn" id="trash-list-btn"><img src={ICON_TRASH}/></div>
-              <div className={this.state.trashDialogCSS}>
-                <span>{trashItems}</span>
-              </div>
-            </div>
-            <div className="plus-wrapper">
-              <div className="btn" id="short-list-btn"><img src={ICON_FAVOURITE}/></div>
-              <div className={this.state.shortlistDialogCSS}>
-                <span>{shortItems}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
+          onTouchEnd={this.touchEnd.bind(this)}
+        >
+          {products}
+        </ul>
+      </div>
+    )
   }
 }
 

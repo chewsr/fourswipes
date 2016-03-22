@@ -34,7 +34,8 @@
     "jsdom": "^7.2.2",
     "jspm": "^0.16.14",
     "react": "^0.14.6",
-    "react-addons-test-utils": "^0.14.6"
+    "react-addons-test-utils": "^0.14.6",
+    "redux": "^3.3.1"
   },
   "jspm": {
     "directories": {
@@ -43,8 +44,11 @@
     "dependencies": {
       "css": "github:systemjs/plugin-css@^0.1.20",
       "jquery": "npm:jquery@^2.2.1",
+      "json": "github:systemjs/plugin-json@^0.1.0",
       "react": "npm:react@^0.14.2",
       "react-dom": "npm:react-dom@^0.14.2",
+      "react-redux": "npm:react-redux@^4.4.1",
+      "redux": "npm:redux@^3.3.1",
       "scss": "github:mobilexag/plugin-sass@^0.1.0"
     },
     "devDependencies": {
@@ -52,5 +56,8 @@
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^1.1.4"
     }
+  },
+  "dependencies": {
+    "redux-thunk": "^2.0.1"
   }
 }

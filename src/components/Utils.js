@@ -2,8 +2,12 @@ var Utils = {
   data: {
     curPage: "home"
   },
+  pageWidth: () => {
+    let dom = document.getElementById('swipe-page')
+    return dom.offsetWidth
+  },
   leftMargin: () => {
-    let dom = document.getElementById('swipe-wrapper')
+    let dom = document.getElementById('swipe-page')
     let width = dom.offsetWidth
     let height = dom.offsetHeight
     let marginLeft = (height*0.75 - width)/2

@@ -1,3 +1,6 @@
+$maincolor: #FF9900
+$mainfont: 'Roboto Slab', serif
+
 #swipe-page
 	border: 0
 	background: #333
@@ -8,153 +11,79 @@
 	left: 0
 	z-index: 0
 
-	.select-nav
-		position: absolute
-		z-index: 1
-		bottom: 0
-		left: 0
-		width: 100%
-		height: 70px
-
-
-		.trash-wrapper
-			position: absolute
-			width: 70px
-			height: 70px
-			top: 0
-			left: 10px
-
-			.btn
-				left: 10px
-
-			.dialog
-				left: 0
-
-		.plus-wrapper
-			position: absolute
-			width: 70px
-			height: 70px
-			top: 0
-			right: 10px
-
-			.btn
-				right: 10px
-
-			.dialog
-				right: 0
-
-		.dialog
-			width: 30px
-			height: 30px
-			background: rgba(208,49,49,1)
-			position: absolute
-			top: -10px
-			display: none
-			border-radius: 50%
-			color: #FFF
-			text-align: center
-			transition: all 0.2s linear
-			transform: scale(1,1)
-
-			&.showed
-				display: table
-
-			&.bump
-				transform: scale(1.2)
-				transition: all 0.2s linear
-
-			span
-				display: table-cell
-				vertical-align: middle
-				font-size: 0.8em
-
-		.btn
-			width: 55px
-			height: 55px
-			background: rgba(0,0,0,.7)
-			border-radius: 50%
-			cursor: pointer
-			position: absolute
-
-			img
-				margin: 15px
-
-
 	ul
+		display: block
 		margin: 0
 		padding: 0
 		list-style-type: none
-		position: absolute
 		width: 100%
 		height: 100%
-		display: block
-		overflow: hidden
 
 		li
 			display: block
-			overflow: hidden
 			width: 100%
 			height: 100%
 			position: absolute
-			text-align: center
-			left: 0
+			overflow: hidden
 			top: 0
-
-			&.layer
-				&.hidden
-					display: none
-
-			&.loading
-				background: #333
-				color: #FFF
-				text-align: center
-				display: table
-
-				span
-					display: table-cell
-					vertical-align: middle
-
-			img.logo
-				width: 100px
-				height: 100px
-				position: absolute
-				top: 50%
-				left: 50%
-				margin-left: -50px
-				margin-top: -50px
+			left: 0
 
 			img
-				height: 100%
 				width: auto
-				clear: right
-				display: block
+				height: 100%
 				position: absolute
-				top: 0
-				left: 0
 
-			.gra-bg
-				background: #000
+			.title
 				position: absolute
-				bottom: 0
-				left: 0
 				width: 100%
-				display: table
-				text-align: center
-				height: 25%
-				background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 1%, rgba(0,0,0,0.89) 100%)
-				background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(0,0,0,0.89) 100%)
-				background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 1%,rgba(0,0,0,0.89) 100%)
-				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#e3000000',GradientType=0 )
+				background: $maincolor
+				bottom: -150px
+				transition: bottom 0.4s linear
 
-				.info
-					display: table-cell
-					vertical-align: middle
-					color: #FFF
-					margin: 0
-					padding: 5px 0
-					width: 100%
+				&.up
+					bottom: 0
+					transition: bottom 0.4s linear
+
+				h3
+					color: #000
+					margin: 10px
 					font-weight: normal
+					font-family: $mainfont
+					text-align: left
+
+				h4
+					margin: 10px
+					color: #000
+					font-family: $mainfont
+
+				.add-to-cart-btn
+					position: absolute
+					top: -45px
+					right: 20px
+					width: 50px
+					height: 50px
+					background: #000
+					border-radius: 50%
+					border: 1px solid #000
 					text-align: center
-					font-family: 'Roboto Slab', serif
-					font-size: 1.4em
-					cursor: pointer
+
+					i
+						color: #FFF
+						font-size: 1.6em
+						margin-top: 12px
+
+				.add-to-favorite-btn
+					position: absolute
+					top: -45px
+					right: 75px
+					width: 50px
+					height: 50px
+					background: #000
+					border-radius: 50%
+					border: 1px solid #000
+					text-align: center
+
+					i
+						color: #FFF
+						font-size: 1.6em
+						margin-top: 12px

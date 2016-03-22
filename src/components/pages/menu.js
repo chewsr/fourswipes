@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import {Utils} from '../Utils.js'
 
-const ICON_CART = 'assets/images/icon-cart.svg'
 class Menu extends Component {
 
   constructor(props) {
@@ -10,39 +9,17 @@ class Menu extends Component {
 
   componentDidMount() {
 
-    let menuBtn = document.getElementById('menu-button')
-    menuBtn.addEventListener('click', () => {
-      let page = menuBtn.getAttribute('data-page')
-      this.props.pageUpdate(page)
-    })
-
   }
 
-  getCartPage(){
-    this.props.pageUpdate('cart-page')
-  }
 
   render() {
 
-    let type = this.props.data
-    let countItems = Utils.countCartItems(this.props.cartItems)
-    let menuContent = ''
-    let hamburgerMenu = (<div className="menu-icon"><span></span><span></span><span></span></div>)
-    let logo = (<div className="logo"><span>chewsr</span></div>)
-    if (type === 'trash-page' || type == 'short-page' || type == 'cart-page' || type == 'info-page') {
-      menuContent = (<button id="menu-button" data-page="home-page">BACK</button>)
-    } else {
-      menuContent = (<button id="menu-button" data-page="cart-page">CART</button>)
-    }
-
-
-    let cart = (<div className="cart-wrapper" onClick={this.getCartPage.bind(this)}>
-      <img src={ICON_CART} />
-      <div className="dialog"><span>{countItems}</span></div>
-    </div>)
-
     return (
-      <div className="menu">{hamburgerMenu}{logo}{menuContent} {cart}</div>
+      <div id="menu">
+        <div className="home-btn"><i className="fa fa-home"></i></div>
+        <div className="shopping-basket"><i className="fa fa-shopping-basket"></i></div>
+        <div className="favorite-list"><i className="fa fa-heart"></i></div>
+      </div>
     )
 
   }

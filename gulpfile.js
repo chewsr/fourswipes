@@ -11,7 +11,7 @@ const config = {
   src: 'src',
   public: 'public',
   dist: 'dist',
-  es6: ['src/*.js', 'src/{components,containers}/**'],
+  es6: ['src/*.js', 'src/{components,containers,state}/**'],
   es5: ['src/jspm_packages/**/*', 'src/config.js'],
   assets: 'src/**/*.{html,png,jpg,jpeg,gif,svg,json,css}',
   sass: ['src/sass/*.sass','src/sass/pages/*.sass'],
