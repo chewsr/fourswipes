@@ -1,5 +1,5 @@
-$maincolor: #FF9900
-$mainfont: 'Roboto Slab', serif
+$maincolor: red
+$mainfont: 'Helvetica Neue', serif
 
 #swipe-page
 	border: 0
@@ -33,57 +33,85 @@ $mainfont: 'Roboto Slab', serif
 				height: 100%
 				position: absolute
 
-			.title
+			.top-title
+				position: absolute
+				top: 0px
+				padding: 50px 0px
+				text-align: center
+				left: 0
+				width: 100%
+				background-color: rgba(0,0,0,.5)
+				background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%)
+				background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%)
+				background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0) 100%)
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 )
+
+				h3
+					margin: 0
+					padding: 20px 20px 10px 20px
+					color: #FFF
+					text-align: center
+					font-weight: normal
+					font-size: 1.0em
+
+				.read-more
+					margin: 0 auto 0 auto
+					color: #FFF
+					padding: 3px 5px
+					text-align: center
+					font-weight: normal
+					font-size: 0.8em
+					border: 1px solid #FFF
+					display: inline-block
+					background: rgba(0,0,0,.5)
+
+			.bottom-title
 				position: absolute
 				width: 100%
-				background: $maincolor
 				bottom: -150px
 				transition: bottom 0.4s linear
+				text-align: center
 
 				&.up
 					bottom: 0
 					transition: bottom 0.4s linear
 
-				h3
-					color: #000
-					margin: 10px
-					font-weight: normal
-					font-family: $mainfont
-					text-align: left
+				.button-wrapper
+					display: inline-block
+					margin: auto
+					position: relative
 
-				h4
-					margin: 10px
-					color: #000
-					font-family: $mainfont
-
-				.add-to-cart-btn
-					position: absolute
-					top: -45px
-					right: 20px
-					width: 50px
-					height: 50px
-					background: #000
-					border-radius: 50%
-					border: 1px solid #000
-					text-align: center
-
-					i
+					.add-to-cart-btn
+						height: 30px
+						margin: 0 0 20px 0
+						display: inline-block
+						background: $maincolor
+						font-family: $mainfont
+						text-align: center
 						color: #FFF
-						font-size: 1.6em
-						margin-top: 12px
+						padding: 7px 20px
+						font-size: 1.2em
+						font-weight: 200
 
-				.add-to-favorite-btn
-					position: absolute
-					top: -45px
-					right: 75px
-					width: 50px
-					height: 50px
-					background: #000
-					border-radius: 50%
-					border: 1px solid #000
-					text-align: center
+						i
+							color: #FFF
+							font-size: 1.6em
+							margin-top: 12px
 
-					i
-						color: #FFF
-						font-size: 1.6em
-						margin-top: 12px
+					.add-to-favorite-btn
+						position: absolute
+						top: 0px
+						right: -60px
+						width: 40px
+						height: 40px
+						background: rgba(0,0,0,.3)
+						border-radius: 50%
+						text-align: center
+
+						i
+							color: #FFF
+							font-size: 1.2em
+							margin-top: 12px
+
+							&.fa-heart
+								color: red

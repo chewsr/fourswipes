@@ -19,41 +19,46 @@ body {
 #menu {
   position: absolute;
   top: 0;
-  background: #000;
+  background: none;
   left: 0;
   width: 100%;
   height: 50px;
   z-index: 1; }
   #menu .home-btn {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
+    margin: 10px;
     text-align: center;
-    background: #333;
-    float: left; }
+    background: rgba(0, 0, 0, 0.3);
+    float: left;
+    border-radius: 50%; }
     #menu .home-btn i {
       color: #FFF;
-      font-size: 1.6em;
-      margin-top: 12px; }
+      font-size: 1.2em;
+      margin-top: 10px; }
   #menu .shopping-basket {
-    height: 50px;
-    width: 70px;
+    height: 40px;
+    width: 40px;
     text-align: center;
-    background: #333;
-    float: right; }
+    background: rgba(0, 0, 0, 0.3);
+    float: right;
+    border-radius: 50%;
+    margin: 10px 10px 10px 5px; }
     #menu .shopping-basket i {
       color: #FFF;
-      font-size: 1.6em;
+      font-size: 1.2em;
       margin-top: 10px; }
   #menu .favorite-list {
-    height: 50px;
-    width: 70px;
-    margin-right: 1px;
+    height: 40px;
+    width: 40px;
     text-align: center;
-    background: #333;
-    float: right; }
+    background: rgba(0, 0, 0, 0.3);
+    float: right;
+    border-radius: 50%;
+    margin: 10px 5px; }
     #menu .favorite-list i {
       color: #FFF;
-      font-size: 1.6em;
+      font-size: 1.2em;
       margin-top: 12px; }
 
 #swipe-page {
@@ -84,50 +89,75 @@ body {
         width: auto;
         height: 100%;
         position: absolute; }
-      #swipe-page ul li .title {
+      #swipe-page ul li .top-title {
+        position: absolute;
+        top: 0px;
+        padding: 50px 0px;
+        text-align: center;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+        background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, transparent 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); }
+        #swipe-page ul li .top-title h3 {
+          margin: 0;
+          padding: 20px 20px 10px 20px;
+          color: #FFF;
+          text-align: center;
+          font-weight: normal;
+          font-size: 1.0em; }
+        #swipe-page ul li .top-title .read-more {
+          margin: 0 auto 0 auto;
+          color: #FFF;
+          padding: 3px 5px;
+          text-align: center;
+          font-weight: normal;
+          font-size: 0.8em;
+          border: 1px solid #FFF;
+          display: inline-block;
+          background: rgba(0, 0, 0, 0.5); }
+      #swipe-page ul li .bottom-title {
         position: absolute;
         width: 100%;
-        background: #FF9900;
         bottom: -150px;
-        transition: bottom 0.4s linear; }
-        #swipe-page ul li .title.up {
+        transition: bottom 0.4s linear;
+        text-align: center; }
+        #swipe-page ul li .bottom-title.up {
           bottom: 0;
           transition: bottom 0.4s linear; }
-        #swipe-page ul li .title h3 {
-          color: #000;
-          margin: 10px;
-          font-weight: normal;
-          font-family: "Roboto Slab", serif;
-          text-align: left; }
-        #swipe-page ul li .title h4 {
-          margin: 10px;
-          color: #000;
-          font-family: "Roboto Slab", serif; }
-        #swipe-page ul li .title .add-to-cart-btn {
-          position: absolute;
-          top: -45px;
-          right: 20px;
-          width: 50px;
-          height: 50px;
-          background: #000;
-          border-radius: 50%;
-          border: 1px solid #000;
-          text-align: center; }
-          #swipe-page ul li .title .add-to-cart-btn i {
+        #swipe-page ul li .bottom-title .button-wrapper {
+          display: inline-block;
+          margin: auto;
+          position: relative; }
+          #swipe-page ul li .bottom-title .button-wrapper .add-to-cart-btn {
+            height: 30px;
+            margin: 0 0 20px 0;
+            display: inline-block;
+            background: red;
+            font-family: "Helvetica Neue", serif;
+            text-align: center;
             color: #FFF;
-            font-size: 1.6em;
-            margin-top: 12px; }
-        #swipe-page ul li .title .add-to-favorite-btn {
-          position: absolute;
-          top: -45px;
-          right: 75px;
-          width: 50px;
-          height: 50px;
-          background: #000;
-          border-radius: 50%;
-          border: 1px solid #000;
-          text-align: center; }
-          #swipe-page ul li .title .add-to-favorite-btn i {
-            color: #FFF;
-            font-size: 1.6em;
-            margin-top: 12px; }
+            padding: 7px 20px;
+            font-size: 1.2em;
+            font-weight: 200; }
+            #swipe-page ul li .bottom-title .button-wrapper .add-to-cart-btn i {
+              color: #FFF;
+              font-size: 1.6em;
+              margin-top: 12px; }
+          #swipe-page ul li .bottom-title .button-wrapper .add-to-favorite-btn {
+            position: absolute;
+            top: 0px;
+            right: -60px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            text-align: center; }
+            #swipe-page ul li .bottom-title .button-wrapper .add-to-favorite-btn i {
+              color: #FFF;
+              font-size: 1.2em;
+              margin-top: 12px; }
+              #swipe-page ul li .bottom-title .button-wrapper .add-to-favorite-btn i.fa-heart {
+                color: red; }

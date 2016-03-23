@@ -18,7 +18,7 @@ class AppContainer extends Component {
   render () {
     return (
       <div id="container">
-        <App products={this.props.products} />
+        <App mainState={this.props}/>
       </div>
     )
   }
@@ -26,8 +26,11 @@ class AppContainer extends Component {
 
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
-    products: state.products
+    products: state.products,
+    cart: state.cart,
+    shortlist: state.shortlist
   }
 }
 
@@ -35,6 +38,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addProducts: (products) => {
       dispatch(actions.addProducts(products))
+    },
+    addToCart: (sku) => {
+      dispatch(actions.addToCart(sku))
+    },
+    addToShortlist: (sku) => {
+      dispatch(actions.addToShortlist(sku))
+    },
+    removeFromShortlist: (sku) => {
+      dispatch(actions.removeFromShortlist(sku))
     }
   }
 }

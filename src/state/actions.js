@@ -1,5 +1,6 @@
-const types = {
-  ADD_PRODUCTS: 'ADD_PRODUCTS'
+const initialState = {
+  addedSku: [],
+  quantityBySku: {}
 }
 
 const actions = {
@@ -7,6 +8,24 @@ const actions = {
     return {
       type: 'ADD_PRODUCTS',
       products
+    }
+  },
+  addToCart: (sku) => {
+    return {
+      type: 'ADD_TO_CART',
+      sku
+    }
+  },
+  addToShortlist: (sku) => {
+    return {
+      type: 'ADD_TO_SHORTLIST',
+      sku
+    }
+  },
+  removeFromShortlist: (sku) => {
+    return {
+      type: 'REMOVE_FROM_SHORTLIST',
+      sku
     }
   }
 }

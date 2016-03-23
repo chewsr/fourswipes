@@ -23,6 +23,7 @@ class Swipe extends Component {
       touchEndX: 0,
       timeStart: 0
     }
+
   }
 
   touchStart(evt) {
@@ -103,10 +104,26 @@ class Swipe extends Component {
     })
   }
 
+  addToCart(event) {
+    let sku = event.currentTarget.getAttribute('data-sku')
+    this.props.mainState.addToCart(sku)
+    console.log(this.props.mainState.cart)
+  }
+
+  addToShortlist(event) {
+    let sku = event.currentTarget.getAttribute('data-sku')
+    if (this.props.mainState.shortlist.indexOf(sku) > -1) {
+      this.props.mainState.removeFromShortlist(sku)
+    } else {
+      this.props.mainState.addToShortlist(sku)
+    }
+    console.log(this.props.mainState.shortlist)
+  }
+
   componentDidUpdate(){
-    if (this.props.products.length > 0 && !this.statics.loadSlider) {
+    if (this.props.mainState.products.length > 0 && !this.statics.loadSlider) {
       let itemWidth = Utils.pageWidth()
-      let totalSlides = this.props.products.length
+      let totalSlides = this.props.mainState.products.length
       let imageLeft = Utils.leftMargin()
       this.setState({
         sliderWidth: itemWidth * totalSlides,
@@ -128,20 +145,21 @@ class Swipe extends Component {
     let prevSlide = this.state.curSlide - 1
     let nextSlide = this.state.curSlide + 1
 
+
     let imageStyle = {
       left: -this.state.imageLeft
     }
 
-    if (typeof this.props.products != 'undefined') {
+    if (typeof this.props.mainState.products != 'undefined') {
 
       var slide = 0
-      products = this.props.products.map(item => {
+      products = this.props.mainState.products.map(item => {
 
         let left = 0
-        let titleClass = 'title'
+        let titleClass = 'bottom-title'
         if (slide == this.state.curSlide) {
           left = 0 + this.state.curX
-          titleClass = 'title up'
+          titleClass = 'bottom-title up'
         } else if (slide < this.state.curSlide - 1) {
           left = -this.state.itemWidth
         } else if (slide > this.state.curSlide + 1) {
@@ -161,15 +179,25 @@ class Swipe extends Component {
         let slideId = 'slide-' + slide
         slide++
 
+        let topTitle = "top-title"
+
+        let shortlistIcon = 'fa fa-heart-o'
+        if (this.props.mainState.shortlist.indexOf(item.sku) > -1) {
+          shortlistIcon = 'fa fa-heart'
+        }
 
         return (
           <li key={item.sku} style={itemStyle} id={slideId}>
             <img src={item.url} style={imageStyle}/>
-            <div className={titleClass}><h3>{item.name} <i className="fa fa-arrow-up"></i></h3>
-              <h4>$ {item.price}</h4>
-              <div className="add-to-cart-btn"><i className="fa fa-cart-plus"></i></div>
-              <div className="add-to-favorite-btn"><i className="fa fa-heart-o"></i></div>
-
+            <div className={topTitle}>
+              <h3>{item.name} <br/> $ {item.price}</h3>
+              <div className="read-more">read more</div>
+            </div>
+            <div className={titleClass}>
+              <div className="button-wrapper">
+                <div className="add-to-cart-btn" data-sku={item.sku} onClick={this.addToCart.bind(this)}>I will have this</div>
+                <div className="add-to-favorite-btn" data-sku={item.sku} onClick={this.addToShortlist.bind(this)}><i className={shortlistIcon}></i></div>
+              </div>
             </div>
           </li>
         )
