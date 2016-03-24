@@ -6,31 +6,30 @@ import products from '../assets/data/products.json!json'
 import App from '../components/App'
 
 class AppContainer extends Component {
-
-  constructor(props){
+  constructor (props) {
     super(props)
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.props.addProducts(products)
   }
 
   render () {
     return (
-      <div id="container">
+      <div id='container'>
         <App mainState={this.props}/>
       </div>
     )
   }
 }
 
-
 const mapStateToProps = (state) => {
   console.log(state)
   return {
     products: state.products,
     cart: state.cart,
-    shortlist: state.shortlist
+    shortlist: state.shortlist,
+    pages: state.pages
   }
 }
 
@@ -47,6 +46,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeFromShortlist: (sku) => {
       dispatch(actions.removeFromShortlist(sku))
+    },
+    getPage: (page) => {
+      dispatch(actions.getPage(page))
     }
   }
 }

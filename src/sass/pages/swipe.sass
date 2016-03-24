@@ -85,13 +85,19 @@ $mainfont: 'Helvetica Neue', serif
 						height: 30px
 						margin: 0 0 20px 0
 						display: inline-block
-						background: $maincolor
 						font-family: $mainfont
 						text-align: center
 						color: #FFF
 						padding: 7px 20px
 						font-size: 1.2em
 						font-weight: 200
+
+						&.enable
+							background: $maincolor
+
+						&.disable
+							background: none
+							border: 1px solid #FFF
 
 						i
 							color: #FFF

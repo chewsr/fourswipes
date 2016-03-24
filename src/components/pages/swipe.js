@@ -186,6 +186,13 @@ class Swipe extends Component {
           shortlistIcon = 'fa fa-heart'
         }
 
+        let cartButton = 'add-to-cart-btn enable'
+        let cartText = 'I will have this'
+        if (Utils.checkInCart(item.sku,this.props.mainState.cart)) {
+          cartButton = 'add-to-cart-btn disable'
+          cartText = 'in cart'
+        }
+
         return (
           <li key={item.sku} style={itemStyle} id={slideId}>
             <img src={item.url} style={imageStyle}/>
@@ -195,7 +202,7 @@ class Swipe extends Component {
             </div>
             <div className={titleClass}>
               <div className="button-wrapper">
-                <div className="add-to-cart-btn" data-sku={item.sku} onClick={this.addToCart.bind(this)}>I will have this</div>
+                <div className={cartButton} data-sku={item.sku} onClick={this.addToCart.bind(this)}>{cartText}</div>
                 <div className="add-to-favorite-btn" data-sku={item.sku} onClick={this.addToShortlist.bind(this)}><i className={shortlistIcon}></i></div>
               </div>
             </div>

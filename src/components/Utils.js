@@ -42,8 +42,13 @@ var Utils = {
     })
     return newProducts
   },
-  checkInCart: (sku,cartItems) => {
-    return (cartItems.indexOf(sku) > -1) ? true : false
+  checkInCart: (sku,cart) => {
+    let found = 0
+    cart.map(item => {
+      if (sku === item.sku)
+        found++
+    })
+    return (found > 0) ? true : false
   },
   countCartItems: (cartList) => {
     let count = 0
@@ -53,7 +58,6 @@ var Utils = {
     return count
   },
   totalCart: (cartList,products) => {
-
     let total = 0
 
     for (let sku in cartList){

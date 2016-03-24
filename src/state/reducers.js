@@ -13,13 +13,18 @@ let products = (state = [], action) => {
 let cart = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
-      return [
+      let found = 0
+      state.map(item => {
+        if (item.sku === action.sku) found++
+      })
+
+      let newstate = [
         {
           sku: action.sku,
           quantity: 1
         },
-        ...state
-      ]
+        ...state]
+      return (found === 0) ? newstate : state
     default: {
       return state
     }
@@ -35,10 +40,9 @@ let shortlist = (state = [], action) => {
       ]
     case 'REMOVE_FROM_SHORTLIST':
       let pos = state.indexOf(action.sku)
-      console.log('hey',pos)
       return [
-        ...state.slice(0,pos),
-        ...state.slice(pos+1)
+        ...state.slice(0, pos),
+        ...state.slice(pos + 1)
       ]
     default: {
       return state
@@ -46,4 +50,28 @@ let shortlist = (state = [], action) => {
   }
 }
 
-export default combineReducers({products, cart, shortlist})
+const pagelist = {
+  swipe: true,
+  shortlist: false,
+  cart: false,
+  info: false
+}
+
+let pages = (state = {}, action) => {
+  switch (action.type) {
+    case 'GET_PAGE':
+      let newPagelist = {
+        swipe: false,
+        shortlist: false,
+        cart: false,
+        info: false
+      }
+      newPagelist[action.page] = true
+      return Object.assign({}, state, newPagelist)
+    default: {
+      return pagelist
+    }
+  }
+}
+
+export default combineReducers({products, cart, shortlist, pages})

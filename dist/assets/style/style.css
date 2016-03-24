@@ -23,7 +23,7 @@ body {
   left: 0;
   width: 100%;
   height: 50px;
-  z-index: 1; }
+  z-index: 100; }
   #menu .home-btn {
     height: 40px;
     width: 40px;
@@ -31,7 +31,8 @@ body {
     text-align: center;
     background: rgba(0, 0, 0, 0.3);
     float: left;
-    border-radius: 50%; }
+    border-radius: 50%;
+    cursor: pointer; }
     #menu .home-btn i {
       color: #FFF;
       font-size: 1.2em;
@@ -43,7 +44,8 @@ body {
     background: rgba(0, 0, 0, 0.3);
     float: right;
     border-radius: 50%;
-    margin: 10px 10px 10px 5px; }
+    margin: 10px 10px 10px 5px;
+    cursor: pointer; }
     #menu .shopping-basket i {
       color: #FFF;
       font-size: 1.2em;
@@ -55,11 +57,47 @@ body {
     background: rgba(0, 0, 0, 0.3);
     float: right;
     border-radius: 50%;
-    margin: 10px 5px; }
+    margin: 10px 5px;
+    position: relative;
+    cursor: pointer; }
+    #menu .favorite-list .dialog {
+      width: 20px;
+      height: 20px;
+      background: red;
+      color: #FFF;
+      font-size: 0.8em;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      right: -5px;
+      text-align: center;
+      display: none; }
+      #menu .favorite-list .dialog.enable {
+        display: table; }
+      #menu .favorite-list .dialog span {
+        display: table-cell;
+        vertical-align: middle; }
     #menu .favorite-list i {
       color: #FFF;
       font-size: 1.2em;
       margin-top: 12px; }
+
+#shortlist-page {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; }
+
+.shortlist-container {
+  top: -1000px;
+  transition: all 0.5s linear;
+  background: transparent; }
+  .shortlist-container.show {
+    top: 0;
+    transition: all 0.3s linear;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.9); }
 
 #swipe-page {
   border: 0;
@@ -135,13 +173,17 @@ body {
             height: 30px;
             margin: 0 0 20px 0;
             display: inline-block;
-            background: red;
             font-family: "Helvetica Neue", serif;
             text-align: center;
             color: #FFF;
             padding: 7px 20px;
             font-size: 1.2em;
             font-weight: 200; }
+            #swipe-page ul li .bottom-title .button-wrapper .add-to-cart-btn.enable {
+              background: red; }
+            #swipe-page ul li .bottom-title .button-wrapper .add-to-cart-btn.disable {
+              background: none;
+              border: 1px solid #FFF; }
             #swipe-page ul li .bottom-title .button-wrapper .add-to-cart-btn i {
               color: #FFF;
               font-size: 1.6em;

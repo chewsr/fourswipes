@@ -27,6 +27,12 @@ const actions = {
       type: 'REMOVE_FROM_SHORTLIST',
       sku
     }
+  },
+  getPage: (page) => {
+    return {
+      type: 'GET_PAGE',
+      page
+    }
   }
 }
 
